@@ -1,0 +1,26 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: blue;
+}
+
+.centered-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50vw;
+  height: 50vh;
+  background-color: brown;
+}
+/* 
+.form-container {
+
+}
+
+.header {
+
+} */
