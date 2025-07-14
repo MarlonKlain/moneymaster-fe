@@ -17,10 +17,10 @@ export class UserService {
     // Injecting the httpClient dependency
     // private because the dependency wont be access directly by the components, it will be accessed by the methods below
     // readOnly because we wont change anything on HttpClient dependency, we will only read and request.
-    private readonly _httpClient = inject(HttpClient)
+    private readonly httpClient = inject(HttpClient)
 
     getUsers(userId: string): Observable<user>{
-        return this._httpClient.get<user>(`http://localhost:8080/api/user/${userId}`)
+        return this.httpClient.get<user>(`http://localhost:8080/api/user/${userId}`)
     }
 
 }

@@ -1,0 +1,24 @@
+@use "../utils/colors.utils" as COLORS;
+
+$font: "IBM Plex Sans", sans-serif;
+
+%regular-text {
+  font-family: $font;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1rem;
+  color: COLORS.$main-text;
+}
+
+%bold-text {
+  font-family: $font;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+%title-text {
+  @extend %bold-text;
+  font-style: italic;
+  font-size: 2.2rem;
+  line-height: 1.5;
+}

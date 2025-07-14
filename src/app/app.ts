@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Userauth } from "./components/userauth/userauth";
-
+import {LoginComponent } from './auth/login/login';
 @Component({
   selector: 'app-root',
-  imports: [Userauth],
+  imports: [LoginComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.scss'
 })
 export class App {
   protected title = 'moneymaster-fe';

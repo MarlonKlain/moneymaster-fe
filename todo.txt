@@ -1,0 +1,5 @@
+//TODO
+how components are defined? why auth is not a component?
+login.component.scss: is that correct?
+utils should be placed inside the public?
+how to design responsive layouts?
