@@ -1,0 +1,9 @@
+@mixin flex-center {
+  // transform the element into a flex element
+  display: flex;
+  //always for the main-axis
+  justify-content: center;
+  // always for the cross-axis
+  align-items: center;
+  flex-direction: column;
+}
