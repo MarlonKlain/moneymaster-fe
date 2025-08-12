@@ -17,6 +17,7 @@ export const routes: Routes = [
   {
     path: 'onboarding',
     component: Onboarding,
+    canActivate: [authGuard],
   },
   {
     path: 'dashboard',

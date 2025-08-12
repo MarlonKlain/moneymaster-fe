@@ -1,1 +1,11 @@
-<p>onboarding works!</p>
+<div class="onboarding-container">
+  <div class="card">
+    <!-- For collections that remain static , track $index provides a straightforward tracking mechanism. 
+     For dynamic collections experiencing additions, deletions, or reordering, opt for a unique property of each item as the tracking key. -->
+    @for(slide of slides; track $index){ @if($index === currentSlide){
+    <ng-icon [name]="slide.icon" class="dolar-icon" />
+    <h1>{{ slide.title }}</h1>
+    <p>{{ slide.description }}</p>
+    } }
+  </div>
+</div>

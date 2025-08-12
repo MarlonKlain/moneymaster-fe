@@ -32,7 +32,11 @@ export class AuthService {
         tap((response) => {
           if (response && response.token) {
             this.saveToken(response.token);
-            this.router.navigate(['/dashboard']);
+            if (response.hasCompletedOnboarding) {
+              this.router.navigate(['/dashboard']);
+            } else {
+              this.router.navigate(['/onboarding']);
+            }
           }
         })
       );
