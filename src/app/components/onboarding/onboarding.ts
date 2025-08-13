@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroDocumentCurrencyDollarSolid } from '@ng-icons/heroicons/solid';
 import { heroArchiveBoxArrowDownSolid } from '@ng-icons/heroicons/solid';
@@ -25,6 +26,7 @@ interface OnboardingSlide {
   ],
 })
 export class Onboarding {
+  private readonly router = inject(Router);
   currentSlide: number = 0;
 
   slides: OnboardingSlide[] = [
@@ -47,4 +49,22 @@ export class Onboarding {
         "Add fixed costs like rent. We'll show you your remaining flexible spending in each category.",
     },
   ];
+
+  goToSlide(index: number): void {
+    this.currentSlide = index;
+  }
+
+  nextSlide() {
+    if (this.currentSlide + 1 === this.slides.length) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.currentSlide++;
+    }
+  }
+
+  previousSlide() {
+    if (this.currentSlide > 0) {
+      this.currentSlide--;
+    }
+  }
 }

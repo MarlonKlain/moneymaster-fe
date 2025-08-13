@@ -4,8 +4,31 @@
      For dynamic collections experiencing additions, deletions, or reordering, opt for a unique property of each item as the tracking key. -->
     @for(slide of slides; track $index){ @if($index === currentSlide){
     <ng-icon [name]="slide.icon" class="dolar-icon" />
-    <h1>{{ slide.title }}</h1>
+    <h1>{{ $index + 1 + ". " + slide.title }}</h1>
     <p>{{ slide.description }}</p>
     } }
+    <div class="dot-container">
+      @for(slide of slides; track $index){
+      <button
+        (click)="goToSlide($index)"
+        class="dot"
+        [class.active]="$index === currentSlide"
+      ></button>
+
+      }
+    </div>
+
+    <div class="btn-container">
+      <button
+        (click)="previousSlide()"
+        [disabled]="currentSlide <= 0"
+        class="btn-secondary"
+      >
+        Back
+      </button>
+      <button (click)="nextSlide()" class="btn-primary">
+        {{ currentSlide === slides.length - 1 ? "Get Started" : "Next" }}
+      </button>
+    </div>
   </div>
 </div>

@@ -13,16 +13,87 @@
 .card {
   @include CENTER.flex-center;
   //To the element be shown it must have a width
-  width: 50%;
+  width: 100%;
   background-color: COLORS.$bg-card;
-  max-width: 960px;
+  max-width: 860px;
   min-height: 420px;
 
   border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  gap: 2rem;
+  padding: 2rem;
 }
 
-.dolar-icon {
-  width: 3rem;
-  height: 3rem;
+ng-icon {
+  width: 5rem;
+  height: 5rem;
+  color: COLORS.$primary;
+}
+h1 {
+  @extend %title-text;
+  text-align: center;
+}
+p {
+  @extend %regular-text;
+  text-align: center;
+}
+
+.dot-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border-style: solid;
+  border: none;
+  background-color: COLORS.$normal-text;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  //the & syntax works a parent placeholder.
+  //this means the the compiler is interpreting this as .not.active
+  &.active {
+    border-color: COLORS.$primary;
+    background-color: COLORS.$primary;
+  }
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+
+  button {
+    @extend %bold-text;
+    width: 25%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .btn-primary {
+    background-color: COLORS.$primary;
+    color: COLORS.$bg-card;
+
+    &:hover {
+      background-color: COLORS.$darker-primary;
+    }
+  }
+
+  .btn-secondary {
+    background-color: COLORS.$bg-card;
+    &:hover:not(:disabled) {
+      background-color: COLORS.$bg;
+    }
+  }
 }
