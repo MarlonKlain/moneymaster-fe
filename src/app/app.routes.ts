@@ -3,6 +3,7 @@ import { LoginComponent } from './components/auth/login/login';
 import { Dashboard } from './components/dashboard/dashboard';
 import { Onboarding } from './components/onboarding/onboarding';
 import { authGuard } from './guards/auth/auth-guard';
+import { RegisterComponent } from './components/auth/register/register';
 
 export const routes: Routes = [
   {
@@ -13,6 +14,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'onboarding',

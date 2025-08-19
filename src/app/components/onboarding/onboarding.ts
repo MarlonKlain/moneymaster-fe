@@ -5,6 +5,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroDocumentCurrencyDollarSolid } from '@ng-icons/heroicons/solid';
 import { heroArchiveBoxArrowDownSolid } from '@ng-icons/heroicons/solid';
 import { heroPresentationChartLineSolid } from '@ng-icons/heroicons/solid';
+import { OnboardingService } from '../../services/onboarding.service';
 
 interface OnboardingSlide {
   icon: string;
@@ -27,6 +28,8 @@ interface OnboardingSlide {
 })
 export class Onboarding {
   private readonly router = inject(Router);
+  private readonly OnboardingService = inject(OnboardingService);
+
   currentSlide: number = 0;
 
   slides: OnboardingSlide[] = [
@@ -56,7 +59,15 @@ export class Onboarding {
 
   nextSlide() {
     if (this.currentSlide + 1 === this.slides.length) {
-      this.router.navigate(['/dashboard']);
+      this.OnboardingService.completeOnboarding().subscribe({
+        next: (response) => {
+          console.log('Onboarding completado com sucesso!', response);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
     } else {
       this.currentSlide++;
     }

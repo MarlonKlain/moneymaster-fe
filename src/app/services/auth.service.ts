@@ -32,10 +32,32 @@ export class AuthService {
         tap((response) => {
           if (response && response.token) {
             this.saveToken(response.token);
+            console.log(response);
             if (response.hasCompletedOnboarding) {
               this.router.navigate(['/dashboard']);
             } else {
               this.router.navigate(['/onboarding']);
+            }
+          }
+        })
+      );
+  }
+
+  userRegister(
+    userCredentials: Omit<user, 'hasCompletedOnboarding' | 'token'>
+  ): Observable<Partial<user>> {
+    return this.httpClient
+      .post<Partial<user>>(
+        'http://localhost:8080/api/user/login',
+        userCredentials
+      )
+      .pipe(
+        tap((response) => {
+          if (response) {
+            if (response.hasCompletedOnboarding) {
+              this.router.navigate(['/login']);
+            } else {
+              throw new Error('ERROR to register');
             }
           }
         })

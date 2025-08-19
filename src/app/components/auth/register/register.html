@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="centered-square">
+    <div class="user-inputs">
+      <div class="header">
+        <h2 class="title">Welcome to MoneyMaster</h2>
+        <p class="subtitle">Register to start planning you financial</p>
+      </div>
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="register()"
+        class="registerForm"
+      >
+        <app-custom-input
+          label="First Name"
+          type="text"
+          id="firstName"
+          name="firstName"
+          formControlName="firstName"
+        />
+        <app-custom-input
+          label="Last Name"
+          type="text"
+          id="lastName"
+          name="lastName"
+          formControlName="lastName"
+        />
+        <app-custom-input
+          label="Username"
+          type="text"
+          id="username"
+          name="username"
+          formControlName="username"
+        />
+        <app-custom-input
+          label="Email"
+          type="email"
+          id="email"
+          name="email"
+          formControlName="email"
+        />
+        <app-custom-input
+          label="Password"
+          type="password"
+          id="password"
+          name="password"
+          formControlName="password"
+        />
+        <app-custom-input
+          label="Confirm password"
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          formControlName="confirmPassword"
+        />
+        <button type="submit">SEND</button>
+      </form>
+    </div>
+    <div class="banner-container">
+      <img src="images/login-banner.png" alt="" class="login-banner" />
+    </div>
+  </div>
+</div>

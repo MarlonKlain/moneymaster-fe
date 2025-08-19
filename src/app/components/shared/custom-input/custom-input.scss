@@ -1,0 +1,21 @@
+@use "../../../../utils/_colors.utils.scss" as COLORS;
+@use "../../../../utils/_center.utils.scss" as CENTER;
+@use "../../../../utils/font.utils.scss" as FONT;
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    @extend %regular-text;
+  }
+
+  input {
+    padding: 0rem 0.5rem;
+    height: 2rem;
+    border-style: solid;
+    border-radius: 0.3rem;
+    border-color: COLORS.$primary;
+    border-width: 1px;
+  }
+}

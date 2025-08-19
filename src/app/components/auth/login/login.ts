@@ -11,8 +11,8 @@ import {
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './login.html',
+  styleUrl: './login.scss',
 })
 export class LoginComponent {
   // $ is a convention when using observables
@@ -32,8 +32,6 @@ export class LoginComponent {
   });
 
   readonly userService = inject(AuthService);
-
-  ngOnInit() {}
 
   userLogin() {
     if (!this.loginForm.value.username || !this.loginForm.value.password) {
