@@ -1,59 +1,24 @@
-<div class="container">
-  <div class="centered-square">
-    <div class="user-inputs">
-      <div class="header">
-        <h2 class="title">Welcome to MoneyMaster</h2>
-        <p class="subtitle">Sign in to planning you financial</p>
-      </div>
-      <form [formGroup]="loginForm" (ngSubmit)="userLogin()" class="user-form">
-        <!-- email input -->
-        <!-- <div class="user-input-fields"> -->
-        <!-- for is the atribute the will refereces/link with a input id -->
-        <!-- <label for="email" class="email-label">Email Address</label> -->
-        <!-- type: is used to show to the browser what type of value the user will provide.
-        using the email as example, the keyboard will show the @ for the user-->
-        <!-- id: is used as referece to get access to the input or be uses as reference/link by the label -->
-        <!-- name: is used as property name for the server. -->
-        <!-- <input
-            class="email-input"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="you@example.com"
-            formControlName="email"
-          />
-        </div> -->
-
-        <div class="user-input-fields">
-          <label for="username" class="username-label">Username</label>
-          <input
-            class="username-input"
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Your_username"
-            formControlName="username"
-          />
-        </div>
-
-        <div class="user-input-fields">
-          <label for="password" class="password-label">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="*******"
-            formControlName="password"
-          />
-        </div>
-        <div class="forgot-password-link">
-          <a class="forgot-password">Forgot your password?</a>
-        </div>
-        <button type="submit" class="submit-button">Sign In</button>
-      </form>
+<app-central-card>
+  <form [formGroup]="loginForm" (ngSubmit)="userLogin()" class="user-form">
+    <app-custom-input
+      label="Username"
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Your_username"
+      formControlName="username"
+    />
+    <app-custom-input
+      label="Password"
+      type="password"
+      id="password"
+      name="password"
+      placeholder="*******"
+      formControlName="password"
+    />
+    <div class="forgot-password-link">
+      <a class="forgot-password">Forgot your password?</a>
     </div>
-    <div class="banner-container">
-      <img src="images/login-banner.png" alt="" class="login-banner" />
-    </div>
-  </div>
-</div>
+    <app-custom-button text="Sign In" type="submit" />
+  </form>
+</app-central-card>

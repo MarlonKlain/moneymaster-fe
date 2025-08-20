@@ -48,17 +48,15 @@ export class AuthService {
   ): Observable<Partial<user>> {
     return this.httpClient
       .post<Partial<user>>(
-        'http://localhost:8080/api/user/login',
+        'http://localhost:8080/api/user/register',
         userCredentials
       )
       .pipe(
         tap((response) => {
           if (response) {
-            if (response.hasCompletedOnboarding) {
-              this.router.navigate(['/login']);
-            } else {
-              throw new Error('ERROR to register');
-            }
+            this.router.navigate(['/login']);
+          } else {
+            throw new Error('ERROR to register');
           }
         })
       );

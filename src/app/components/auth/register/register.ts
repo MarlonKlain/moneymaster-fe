@@ -8,10 +8,12 @@ import {
 import { CustomInput } from '../../shared/custom-input/custom-input';
 import { user } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth.service';
+import { CustomButton } from '../../shared/custom-button/custom-button';
+import { CentralCard } from '../../shared/central-card/central-card';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, CustomInput],
+  imports: [ReactiveFormsModule, CustomInput, CustomButton, CentralCard],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })

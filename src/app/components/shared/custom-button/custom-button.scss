@@ -1,0 +1,15 @@
+@use "../../../../utils/_colors.utils.scss" as COLORS;
+@use "../../../../utils/_center.utils.scss" as CENTER;
+@use "../../../../utils/font.utils.scss" as FONT;
+
+button {
+  width: 100%;
+  height: 2.5rem;
+  margin: 1rem 0rem;
+  border-radius: 0.5rem;
+  border-width: 0px;
+  background-color: COLORS.$primary;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffff;
+}

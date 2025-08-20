@@ -9,7 +9,6 @@ import { routes } from './app.routes';
 import {
   HTTP_INTERCEPTORS,
   provideHttpClient,
-  withFetch,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth-interceptor';

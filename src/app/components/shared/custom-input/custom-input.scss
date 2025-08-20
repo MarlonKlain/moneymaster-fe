@@ -8,6 +8,7 @@
 
   label {
     @extend %regular-text;
+    margin-bottom: 0.2rem;
   }
 
   input {
@@ -17,5 +18,6 @@
     border-radius: 0.3rem;
     border-color: COLORS.$primary;
     border-width: 1px;
+    margin-bottom: 0.5rem;
   }
 }

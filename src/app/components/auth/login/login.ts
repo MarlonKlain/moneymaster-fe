@@ -8,9 +8,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CustomButton } from '../../shared/custom-button/custom-button';
+import { CustomInput } from '../../shared/custom-input/custom-input';
+import { CentralCard } from '../../shared/central-card/central-card';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CustomButton, CustomInput, CentralCard],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
