@@ -9,5 +9,6 @@ import { BackButton } from '../back-button/back-button';
   styleUrl: './central-card.scss',
 })
 export class CentralCard {
+  @Input() showBackBtn: string = 'true';
   @Input() subtitle: string = 'true';
 }

@@ -1,7 +1,10 @@
 <div class="container">
   <div class="centered-square">
     <div class="user-inputs">
+      @if(showBackBtn === 'true'){
+
       <app-back-button class="back-button" />
+      }
       <div class="header">
         <h2 class="title">Welcome to MoneyMaster</h2>
         @if(subtitle === "true"){
