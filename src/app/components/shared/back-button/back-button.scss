@@ -1,0 +1,12 @@
+@use "../../../../utils/colors.utils" as COLORS;
+@use "../../../../utils/center.utils.scss" as CENTER;
+@use "../../../../utils/font.utils.scss" as FONT;
+
+ng-icon {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: COLORS.$primary;
+}

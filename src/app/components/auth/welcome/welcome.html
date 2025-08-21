@@ -1,5 +1,10 @@
-<div class="container">
-  <div class="centered-square">
-    <div class="header"></div>
+<app-central-card subtitle="false">
+  <p class="welcome-text">
+    The simple, modern way to accomplish your goals and organize your workflow.
+    Sign up to get started or log in to continue.
+  </p>
+  <div class="btn-container">
+    <app-custom-button text="Log in" (click)="toLogin()" />
+    <app-custom-button text="Sign up" (click)="toSignUp()" />
   </div>
-</div>
+</app-central-card>

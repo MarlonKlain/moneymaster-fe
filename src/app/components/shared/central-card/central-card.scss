@@ -7,7 +7,6 @@
   width: 100%;
   min-height: 100vh;
   background-color: COLORS.$bg;
-  padding: 1rem;
 }
 
 .centered-square {
@@ -37,9 +36,10 @@
 }
 
 .user-inputs {
+  position: relative;
   width: 100%;
   align-content: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 .subtitle {
   @extend %regular-text;
