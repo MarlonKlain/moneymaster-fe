@@ -46,7 +46,6 @@ export class LoginComponent {
         password: this.loginForm.value.password,
       };
 
-      console.log(userCredentials);
       this.userService.userLogin(userCredentials).subscribe({
         next(response) {
           console.log('Login successful!. ', response);

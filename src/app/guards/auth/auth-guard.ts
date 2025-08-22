@@ -8,7 +8,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   if (!storedToken) {
     console.log('SEM TOKEN');
-    router.navigate(['/login']);
+    router.navigate(['/welcome']);
     return false;
   } else {
     console.log('COM TOKEN');

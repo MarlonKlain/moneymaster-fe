@@ -5,6 +5,7 @@ import { Onboarding } from './components/onboarding/onboarding';
 import { authGuard } from './guards/auth/auth-guard';
 import { RegisterComponent } from './components/auth/register/register';
 import { WelcomeComponent } from './components/auth/welcome/welcome';
+import { BugdetComponent } from './components/bugdet/bugdet';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,12 @@ export const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
+  {
+    path: 'budget',
+    component: BugdetComponent,
+    canActivate: [authGuard],
+  },
+
   {
     path: 'onboarding',
     component: Onboarding,
