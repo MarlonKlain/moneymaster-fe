@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { CustomButton } from '../shared/custom-button/custom-button';
 import { BudgetService } from '../../services/budget.service';
+import { budget } from '../../models/budget.model';
 
 @Component({
   selector: 'app-bugdet',
@@ -29,18 +30,21 @@ export class BugdetComponent {
   });
 
   createBudget() {
-    this.budgetService
-      .createBudget(Number(this.budgetForm.value.monthlyIncome))
-      .subscribe({
-        next(response) {
-          console.log('OI');
-        },
-        error(err) {
-          console.log('Erro');
-        },
-        complete() {
-          console.log('OI');
-        },
-      });
+    const userBudget: budget = {
+      //todo handle when the user uses comma ",".
+      monthlyIncome: Number(this.budgetForm.value.monthlyIncome),
+    };
+
+    this.budgetService.createBudget(userBudget).subscribe({
+      next(response) {
+        console.log('OI');
+      },
+      error(err) {
+        console.log('Erro');
+      },
+      complete() {
+        console.log('OI');
+      },
+    });
   }
 }

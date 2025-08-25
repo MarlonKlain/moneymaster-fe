@@ -20,7 +20,7 @@ import { CentralCard } from '../../shared/central-card/central-card';
 export class LoginComponent {
   // $ is a convention when using observables
   // ! is telling to TS that, besides not declared yet, it will receives a value before it be used.
-  user$!: Observable<user>;
+  // user$!: Observable<user>;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.nullValidator, Validators.required]),

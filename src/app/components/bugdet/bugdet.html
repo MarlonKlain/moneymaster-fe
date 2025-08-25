@@ -1,14 +1,22 @@
 <div class="container">
   <div class="central-square">
-    <h1 class="title">Let's get Started!</h1>
-    <h2>What is your monthly income?</h2>
-    <form [formGroup]="budgetForm" (ngSubmit)="createBudget()">
-      <app-custom-input
-        id="monthlyIncome"
-        name="monthlyIncome"
-        formControlName="monthlyIncome"
-      />
-      <app-custom-button text="Next" type="submit" />
+    <form
+      [formGroup]="budgetForm"
+      (ngSubmit)="createBudget()"
+      class="budgetForm"
+    >
+      <h1 class="title">Let's get Started!</h1>
+      <div class="question">
+        <h2>What is your monthly income?</h2>
+        <app-custom-input
+          id="monthlyIncome"
+          name="monthlyIncome"
+          formControlName="monthlyIncome"
+        />
+      </div>
+      <div class="btn">
+        <app-custom-button text="Next" type="submit" />
+      </div>
     </form>
   </div>
 </div>

@@ -1,3 +1,3 @@
 export interface budget {
-  budget: number | null | undefined;
+  monthlyIncome: number | null | undefined;
 }

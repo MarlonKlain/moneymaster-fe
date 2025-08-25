@@ -11,9 +11,9 @@
 
 .central-square {
   display: flex;
-  flex-direction: row;
+  padding: 2rem;
   background-color: COLORS.$bg-card;
-  width: 50%;
+  width: 30%;
   /* For larger screens, like desktop, it will expand to the set width, preventing from excessive expanding */
   max-width: 960px;
   /* For smaller screens, like mobile, it will expand to the maximun size*/
@@ -24,4 +24,33 @@
   overflow: hidden;
 
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.title {
+  @extend %title-text;
+  font-size: 3.5rem;
+  justify-self: flex-start;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  h2 {
+    @extend %regular-text;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.btn {
+  width: 50%;
+}
+
+.budgetForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
 }

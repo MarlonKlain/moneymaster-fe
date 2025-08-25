@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login';
-import { Dashboard } from './components/dashboard/dashboard';
+import { DashboardComponent } from './components/dashboard/dashboard';
 import { Onboarding } from './components/onboarding/onboarding';
 import { authGuard } from './guards/auth/auth-guard';
 import { RegisterComponent } from './components/auth/register/register';
 import { WelcomeComponent } from './components/auth/welcome/welcome';
 import { BugdetComponent } from './components/bugdet/bugdet';
+import { budgetGuard } from './guards/budget/budget-guard';
 
 export const routes: Routes = [
   {
@@ -39,7 +40,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: Dashboard,
-    canActivate: [authGuard],
+    component: DashboardComponent,
+    canActivate: [authGuard, budgetGuard],
   },
 ];
