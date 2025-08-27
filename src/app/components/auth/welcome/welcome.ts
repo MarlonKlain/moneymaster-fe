@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './welcome.scss',
 })
 export class WelcomeComponent {
-  readonly router = inject(Router);
+  private readonly router = inject(Router);
 
   toLogin() {
     this.router.navigate(['/login']);

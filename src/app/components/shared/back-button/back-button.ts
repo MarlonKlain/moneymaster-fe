@@ -15,7 +15,7 @@ import { heroArrowUturnLeftSolid } from '@ng-icons/heroicons/solid';
   ],
 })
 export class BackButton {
-  readonly location = inject(Location);
+  private readonly location = inject(Location);
 
   backIcon: string = 'heroArrowUturnLeftSolid';
 

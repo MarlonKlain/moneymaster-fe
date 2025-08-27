@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
-import { user } from '../../../models/user.model';
+import { User } from '../../../models/user.model';
 import {
   FormControl,
   FormGroup,
@@ -34,14 +34,14 @@ export class LoginComponent {
     ]),
   });
 
-  readonly userService = inject(AuthService);
+  private readonly userService = inject(AuthService);
 
   userLogin() {
     if (!this.loginForm.value.username || !this.loginForm.value.password) {
       console.log('All fields are required');
       return;
     } else {
-      const userCredentials: Pick<user, 'username' | 'password'> = {
+      const userCredentials: Pick<User, 'username' | 'password'> = {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password,
       };

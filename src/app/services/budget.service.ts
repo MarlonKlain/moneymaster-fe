@@ -1,23 +1,23 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, map, of } from 'rxjs';
-import { budget } from '../models/budget.model';
+import { Budget } from '../models/budget.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BudgetService {
-  readonly http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
-  createBudget(userBudget: budget): Observable<budget> {
-    return this.http.post<budget>(
+  createBudget(userBudget: Budget): Observable<Budget> {
+    return this.http.post<Budget>(
       'http://localhost:8080/api/user/budget',
       userBudget
     );
   }
 
   hasBudget(): Observable<boolean> {
-    return this.http.get<budget>('http://localhost:8080/api/user/budget').pipe(
+    return this.http.get<Budget>('http://localhost:8080/api/user/budget').pipe(
       map((budgetResponse) => {
         if (budgetResponse !== null) {
           return true;

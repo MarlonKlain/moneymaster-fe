@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CustomInput } from '../../shared/custom-input/custom-input';
-import { user } from '../../../models/user.model';
+import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth.service';
 import { CustomButton } from '../../shared/custom-button/custom-button';
 import { CentralCard } from '../../shared/central-card/central-card';
@@ -18,8 +18,8 @@ import { CentralCard } from '../../shared/central-card/central-card';
   styleUrl: './register.scss',
 })
 export class RegisterComponent {
-  userCredentials!: Omit<user, 'hasCompletedOnboarding' | 'token'>;
-  readonly userService = inject(AuthService);
+  userCredentials!: Omit<User, 'hasCompletedOnboarding' | 'token'>;
+  private readonly userService = inject(AuthService);
 
   registerForm = new FormGroup({
     firstName: new FormControl('', [

@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/auth/register/register';
 import { WelcomeComponent } from './components/auth/welcome/welcome';
 import { BugdetComponent } from './components/bugdet/bugdet';
 import { budgetGuard } from './guards/budget/budget-guard';
+import { BudgetCategoryComponent } from './components/budget-category/budget-category';
 
 export const routes: Routes = [
   {
@@ -42,5 +43,9 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [authGuard, budgetGuard],
+  },
+  {
+    path: 'budget-category',
+    component: BudgetCategoryComponent,
   },
 ];

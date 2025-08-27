@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { user } from '../models/user.model';
+import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,17 +14,17 @@ export class AuthService {
   private readonly httpClient = inject(HttpClient);
   private readonly router = inject(Router);
 
-  getUsers(userId: string): Observable<user> {
-    return this.httpClient.get<user>(
+  getUsers(userId: string): Observable<User> {
+    return this.httpClient.get<User>(
       `http://localhost:8080/api/user/${userId}`
     );
   }
 
   userLogin(
-    userCredentials: Pick<user, 'username' | 'password'>
-  ): Observable<Partial<user>> {
+    userCredentials: Pick<User, 'username' | 'password'>
+  ): Observable<Partial<User>> {
     return this.httpClient
-      .post<Partial<user>>(
+      .post<Partial<User>>(
         'http://localhost:8080/api/user/login',
         userCredentials
       )
@@ -44,10 +44,10 @@ export class AuthService {
   }
 
   userRegister(
-    userCredentials: Omit<user, 'hasCompletedOnboarding' | 'token'>
-  ): Observable<Partial<user>> {
+    userCredentials: Omit<User, 'hasCompletedOnboarding' | 'token'>
+  ): Observable<Partial<User>> {
     return this.httpClient
-      .post<Partial<user>>(
+      .post<Partial<User>>(
         'http://localhost:8080/api/user/register',
         userCredentials
       )

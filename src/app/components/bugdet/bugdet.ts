@@ -9,7 +9,8 @@ import {
 } from '@angular/forms';
 import { CustomButton } from '../shared/custom-button/custom-button';
 import { BudgetService } from '../../services/budget.service';
-import { budget } from '../../models/budget.model';
+import { Budget } from '../../models/budget.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bugdet',
@@ -23,26 +24,31 @@ import { budget } from '../../models/budget.model';
   styleUrl: './bugdet.scss',
 })
 export class BugdetComponent {
-  readonly budgetService = inject(BudgetService);
+  private readonly budgetService = inject(BudgetService);
+  private readonly router = inject(Router);
 
   budgetForm = new FormGroup({
     monthlyIncome: new FormControl('', [Validators.required]),
   });
 
   createBudget() {
-    const userBudget: budget = {
+    const userBudget: Budget = {
       //todo handle when the user uses comma ",".
       monthlyIncome: Number(this.budgetForm.value.monthlyIncome),
+      budgetCategories: null,
     };
 
     this.budgetService.createBudget(userBudget).subscribe({
-      next(response) {
-        console.log('OI');
+      next: (response) => {
+        console.log('RESPONSE', response);
+        this.router.navigate(['/dashboard'], {
+          state: { budget: response.budgetCategories },
+        });
       },
-      error(err) {
+      error: (err) => {
         console.log('Erro');
       },
-      complete() {
+      complete: () => {
         console.log('OI');
       },
     });
