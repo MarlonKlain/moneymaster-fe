@@ -1,1 +1,26 @@
-<app-central-card> </app-central-card>
+<app-central-card>
+  <form [formGroup]="budgetCategoryForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="budgetCategories">
+      @for(budgetCategory of budgetCategories.controls; track $index){
+      <div [formGroupName]="$index">
+        <input type="text" placeholder="Name" formControlName="name" />
+        <input
+          type="number"
+          placeholder="Percentage"
+          formControlName="percentage"
+        />
+      </div>
+      <button type="button" (click)="removeCategory($index)" class="remove-btn">
+        Deletar
+      </button>
+      }
+    </div>
+    <button type="button" (click)="addNewCategory()" class="add-btn">
+      + Add Another Category
+    </button>
+
+    <button type="submit" [disabled]="budgetCategoryForm.invalid">
+      Save Categories
+    </button>
+  </form>
+</app-central-card>
