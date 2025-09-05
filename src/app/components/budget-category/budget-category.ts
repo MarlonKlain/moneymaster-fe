@@ -41,8 +41,10 @@ export class BudgetCategoryComponent {
 
     this.budgetCategories$.subscribe({
       next: (defaultCategories) => {
+        console.log(defaultCategories);
         const categoryFormGroups = defaultCategories.map((category) => {
           return this.fb.group({
+            budgetCategoryId: [category.budgetCategoryId],
             name: [category.name],
             percentage: [category.percentage],
           });
@@ -70,6 +72,7 @@ export class BudgetCategoryComponent {
 
   private newCategory(): FormGroup {
     return this.fb.group({
+      id: [''],
       name: [''],
       percentage: [0],
     });
@@ -80,12 +83,24 @@ export class BudgetCategoryComponent {
   }
 
   removeCategory(index: number): void {
-    this.budgetCategories.removeAt(index);
+    this.budgetCategoryService
+      .deleteBudgetCategory(this.budgetCategories.at(index).value)
+      .subscribe({
+        next: (value) => {
+          this.budgetCategories.removeAt(index);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   onSubmit() {
     if (this.budgetCategoryForm.valid) {
-      //
+      console.log(this.budgetCategoryForm.value);
+      this.budgetCategoryService
+        .updateBudgetCategoriesList(this.budgetCategories.value)
+        .subscribe({});
     }
   }
 }

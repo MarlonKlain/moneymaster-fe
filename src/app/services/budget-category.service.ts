@@ -14,4 +14,21 @@ export class BudgetCategoryService {
       'http://localhost:8080/api/user/budget/budget-category'
     );
   }
+
+  //todo improve the return type
+  updateBudgetCategoriesList(
+    budgetCategories: BudgetCategory[]
+  ): Observable<any> {
+    return this.http.post(
+      'http://localhost:8080/api/user/budget/budget-category/update',
+      budgetCategories
+    );
+  }
+
+  deleteBudgetCategory(budgetCategories: BudgetCategory[]): Observable<any> {
+    return this.http.post<any>(
+      'http://localhost:8080/api/user/budget/budget-category/delete',
+      budgetCategories
+    );
+  }
 }
