@@ -40,8 +40,7 @@ export class BugdetComponent {
 
     this.budgetService.createBudget(userBudget).subscribe({
       next: (response) => {
-        console.log('RESPONSE', response);
-        this.router.navigate(['/dashboard'], {
+        this.router.navigate(['/budget-category'], {
           state: { budget: response.budgetCategories },
         });
       },

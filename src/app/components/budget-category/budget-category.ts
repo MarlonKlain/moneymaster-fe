@@ -11,12 +11,28 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { CustomInput } from '../shared/custom-input/custom-input';
+import { heroXMarkSolid } from '@ng-icons/heroicons/solid';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { CustomButton } from '../shared/custom-button/custom-button';
 
 @Component({
   selector: 'app-budget-category',
-  imports: [CentralCard, CommonModule, ReactiveFormsModule],
+  imports: [
+    CentralCard,
+    CommonModule,
+    ReactiveFormsModule,
+    CustomInput,
+    CustomButton,
+    NgIcon,
+  ],
   templateUrl: './budget-category.html',
   styleUrl: './budget-category.scss',
+  viewProviders: [
+    provideIcons({
+      heroXMarkSolid,
+    }),
+  ],
 })
 export class BudgetCategoryComponent {
   budgetCategories$!: Observable<BudgetCategory[]>;
@@ -72,7 +88,7 @@ export class BudgetCategoryComponent {
 
   private newCategory(): FormGroup {
     return this.fb.group({
-      id: [''],
+      id: [null],
       name: [''],
       percentage: [0],
     });
@@ -83,16 +99,21 @@ export class BudgetCategoryComponent {
   }
 
   removeCategory(index: number): void {
-    this.budgetCategoryService
-      .deleteBudgetCategory(this.budgetCategories.at(index).value)
-      .subscribe({
-        next: (value) => {
-          this.budgetCategories.removeAt(index);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+    console.log(this.budgetCategories.at(index).value);
+    if (this.budgetCategories.at(index).value.id === null) {
+      this.budgetCategories.removeAt(index);
+    } else {
+      this.budgetCategoryService
+        .deleteBudgetCategory(this.budgetCategories.at(index).value)
+        .subscribe({
+          next: (value) => {
+            this.budgetCategories.removeAt(index);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
+    }
   }
 
   onSubmit() {

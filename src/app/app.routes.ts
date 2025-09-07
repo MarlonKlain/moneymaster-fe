@@ -8,6 +8,7 @@ import { WelcomeComponent } from './components/auth/welcome/welcome';
 import { BugdetComponent } from './components/bugdet/bugdet';
 import { budgetGuard } from './guards/budget/budget-guard';
 import { BudgetCategoryComponent } from './components/budget-category/budget-category';
+import { onboardingGuard } from './guards/onboarding/onboarding-guard';
 
 export const routes: Routes = [
   {
@@ -42,10 +43,11 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard, budgetGuard],
+    canActivate: [authGuard, onboardingGuard],
   },
   {
     path: 'budget-category',
     component: BudgetCategoryComponent,
+    canActivate: [authGuard],
   },
 ];

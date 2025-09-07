@@ -1,0 +1,27 @@
+@use "../../../utils/colors.utils" as COLORS;
+@use "../../../utils/_center.utils.scss" as CENTER;
+@use "../../../utils/font.utils.scss" as FONT;
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  background-color: transparent;
+  border-color: transparent;
+  height: 2rem;
+  ng-icon {
+    width: 2rem;
+    height: 1.5rem;
+    color: COLORS.$alert;
+  }
+}
+
+.container-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 3rem;
+}

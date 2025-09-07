@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,26 +14,19 @@ export class AuthService {
   // readOnly because we wont change anything on HttpClient dependency, we will only read and request.
   private readonly httpClient = inject(HttpClient);
   private readonly router = inject(Router);
-
-  getUsers(userId: string): Observable<User> {
-    return this.httpClient.get<User>(
-      `http://localhost:8080/api/user/${userId}`
-    );
-  }
+  private readonly apiUrl = environment.apiUrl;
 
   userLogin(
     userCredentials: Pick<User, 'username' | 'password'>
   ): Observable<Partial<User>> {
+    console.log(this.apiUrl);
     return this.httpClient
-      .post<Partial<User>>(
-        'http://localhost:8080/api/user/login',
-        userCredentials
-      )
+      .post<Partial<User>>(`${this.apiUrl}/login`, userCredentials)
       .pipe(
         tap((response) => {
           if (response && response.token) {
+            console.log('TOKEN:: ', response.token);
             this.saveToken(response.token);
-            console.log(response);
             if (response.hasCompletedOnboarding) {
               this.router.navigate(['/dashboard']);
             } else {
@@ -47,10 +41,7 @@ export class AuthService {
     userCredentials: Omit<User, 'hasCompletedOnboarding' | 'token'>
   ): Observable<Partial<User>> {
     return this.httpClient
-      .post<Partial<User>>(
-        'http://localhost:8080/api/user/register',
-        userCredentials
-      )
+      .post<Partial<User>>(`${this.apiUrl}/register`, userCredentials)
       .pipe(
         tap((response) => {
           if (response) {

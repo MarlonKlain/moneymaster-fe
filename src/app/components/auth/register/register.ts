@@ -18,7 +18,7 @@ import { CentralCard } from '../../shared/central-card/central-card';
   styleUrl: './register.scss',
 })
 export class RegisterComponent {
-  userCredentials!: Omit<User, 'hasCompletedOnboarding' | 'token'>;
+  userCredentials!: User;
   private readonly userService = inject(AuthService);
 
   registerForm = new FormGroup({
@@ -31,23 +31,23 @@ export class RegisterComponent {
       Validators.required,
     ]),
     email: new FormControl('', [
-      Validators.nullValidator,
-      Validators.required,
-      Validators.email,
+      // Validators.nullValidator,
+      // Validators.required,
+      // Validators.email,
     ]),
     username: new FormControl('', [
       Validators.nullValidator,
       Validators.required,
     ]),
     password: new FormControl('', [
-      Validators.nullValidator,
-      Validators.required,
-      Validators.minLength(8),
+      // Validators.nullValidator,
+      // Validators.required,
+      // Validators.minLength(8),
     ]),
     confirmPassword: new FormControl('', [
-      Validators.nullValidator,
-      Validators.required,
-      Validators.minLength(8),
+      // Validators.nullValidator,
+      // Validators.required,
+      // Validators.minLength(8),
     ]),
   });
 
@@ -73,6 +73,11 @@ export class RegisterComponent {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
       confirmPassword: this.registerForm.value.confirmPassword,
+      hasCompletedOnboarding: null,
+      hasSetBudgetCategories: null,
+      hasSetFixedCosts: null,
+      hasSetMonthlyIncome: null,
+      token: null,
     };
 
     this.userService.userRegister(this.userCredentials).subscribe({

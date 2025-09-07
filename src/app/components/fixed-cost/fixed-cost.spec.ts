@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BugdetComponent } from './bugdet';
+import { FixedCost } from './fixed-cost';
 
-describe('BugdetComponent', () => {
-  let component: BugdetComponent;
-  let fixture: ComponentFixture<BugdetComponent>;
+describe('FixedCost', () => {
+  let component: FixedCost;
+  let fixture: ComponentFixture<FixedCost>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BugdetComponent],
-    }).compileComponents();
+      imports: [FixedCost]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(BugdetComponent);
+    fixture = TestBed.createComponent(FixedCost);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

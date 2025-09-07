@@ -5,6 +5,9 @@ export interface User {
   email: string | null | undefined;
   password: string | null | undefined;
   confirmPassword: string | null | undefined;
-  hasCompletedOnboarding: boolean;
-  token: string;
+  hasCompletedOnboarding: boolean | null;
+  hasSetMonthlyIncome: boolean | null;
+  hasSetBudgetCategories: boolean | null;
+  hasSetFixedCosts: boolean | null;
+  token: string | null;
 }

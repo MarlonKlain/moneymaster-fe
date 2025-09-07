@@ -18,6 +18,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class CustomInput implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() type: string = '';
+  @Input() placeholder: string = '';
 
   value: string = '';
   isDisabled: boolean = false;

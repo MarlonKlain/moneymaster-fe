@@ -2,25 +2,39 @@
   <form [formGroup]="budgetCategoryForm" (ngSubmit)="onSubmit()">
     <div formArrayName="budgetCategories">
       @for(budgetCategory of budgetCategories.controls; track $index){
-      <div [formGroupName]="$index">
-        <input type="text" placeholder="Name" formControlName="name" />
-        <input
+      <div [formGroupName]="$index" class="input-container">
+        <!-- <div class="category-icone">
+          <img src="" />
+        </div> -->
+        <app-custom-input
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+        />
+        <app-custom-input
           type="number"
           placeholder="Percentage"
           formControlName="percentage"
         />
+
+        <button
+          type="button"
+          (click)="removeCategory($index)"
+          class="delete-icon"
+        >
+          <ng-icon name="heroXMarkSolid" />
+        </button>
       </div>
-      <button type="button" (click)="removeCategory($index)" class="remove-btn">
-        Deletar
-      </button>
       }
     </div>
-    <button type="button" (click)="addNewCategory()" class="add-btn">
-      + Add Another Category
-    </button>
-
-    <button type="submit" [disabled]="budgetCategoryForm.invalid">
-      Save Categories
-    </button>
+    <div class="container-btn">
+      <app-custom-button
+        type="button"
+        (click)="addNewCategory()"
+        text="Add Category"
+      />
+      <!-- disabled="budgetCategoryForm.invalid" -->
+      <app-custom-button type="submit" text="Save" />
+    </div>
   </form>
 </app-central-card>
