@@ -33,8 +33,12 @@
         (click)="addNewCategory()"
         text="Add Category"
       />
-      <!-- disabled="budgetCategoryForm.invalid" -->
-      <app-custom-button type="submit" text="Save" />
+
+      <app-custom-button
+        type="submit"
+        text="Save"
+        [disabled]="budgetCategoryForm.invalid"
+      />
     </div>
   </form>
 </app-central-card>

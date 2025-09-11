@@ -24,7 +24,6 @@ export const onboardingGuard: CanActivateFn = (route, state) => {
       }
 
       if (!user.hasSetMonthlyIncome) {
-        console.log(user.hasSetMonthlyIncome);
         router.navigate(['/budget']);
         return false;
       }
@@ -35,7 +34,8 @@ export const onboardingGuard: CanActivateFn = (route, state) => {
       }
 
       if (!user.hasSetFixedCosts) {
-        router.navigate(['/fixed-costs']);
+        console.log(user.hasSetFixedCosts);
+        router.navigate(['/fixed-cost']);
         return false;
       }
 

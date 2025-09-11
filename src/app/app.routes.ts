@@ -6,9 +6,9 @@ import { authGuard } from './guards/auth/auth-guard';
 import { RegisterComponent } from './components/auth/register/register';
 import { WelcomeComponent } from './components/auth/welcome/welcome';
 import { BugdetComponent } from './components/bugdet/bugdet';
-import { budgetGuard } from './guards/budget/budget-guard';
 import { BudgetCategoryComponent } from './components/budget-category/budget-category';
 import { onboardingGuard } from './guards/onboarding/onboarding-guard';
+import { FixedCostComponent } from './components/fixed-cost/fixed-cost';
 
 export const routes: Routes = [
   {
@@ -48,6 +48,11 @@ export const routes: Routes = [
   {
     path: 'budget-category',
     component: BudgetCategoryComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'fixed-cost',
+    component: FixedCostComponent,
     canActivate: [authGuard],
   },
 ];

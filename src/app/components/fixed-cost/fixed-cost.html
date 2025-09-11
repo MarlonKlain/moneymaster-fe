@@ -1,1 +1,42 @@
-<p>fixed-cost works!</p>
+<app-central-card>
+  <form [formGroup]="fixedCostForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="fixedCosts">
+      @for(fixedCost of fixedCosts.controls; track $index){
+      <div [formGroupName]="$index" class="fixed-cost-input-container">
+        <app-custom-input placeholder="Amount" formControlName="amount" />
+        <app-custom-input
+          placeholder="Description"
+          formControlName="description"
+        />
+        <select
+          name="fixed-costs"
+          id="budget-category-fixed-cost"
+          formControlName="budgetCategoryId"
+        >
+          <option [ngValue]="null">Select one</option>
+          @for(budgetCategory of budgetCategories$; track
+          budgetCategory.budgetCategoryId){
+          <option [value]="budgetCategory.budgetCategoryId">
+            {{ budgetCategory.name }}
+          </option>
+
+          }
+        </select>
+        <button
+          type="button"
+          (click)="removeFixedCost($index)"
+          class="delete-icon"
+        >
+          <ng-icon name="heroXMarkSolid" />
+        </button>
+      </div>
+      }
+      <app-custom-button
+        type="button"
+        text="Add Fixed Cost"
+        (click)="addNewFixedCost()"
+      />
+    </div>
+    <app-custom-button text="Save" type="submit" />
+  </form>
+</app-central-card>
