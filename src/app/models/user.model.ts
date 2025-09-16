@@ -1,3 +1,5 @@
+import { Budget } from './budget.model';
+
 export interface User {
   firstName: string | null | undefined;
   lastName: string | null | undefined;
@@ -10,4 +12,5 @@ export interface User {
   hasSetBudgetCategories: boolean | null;
   hasSetFixedCosts: boolean | null;
   token: string | null;
+  budget: Budget | null;
 }

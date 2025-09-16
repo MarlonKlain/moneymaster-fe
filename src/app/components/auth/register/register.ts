@@ -78,6 +78,7 @@ export class RegisterComponent {
       hasSetFixedCosts: null,
       hasSetMonthlyIncome: null,
       token: null,
+      budget: null,
     };
 
     this.userService.userRegister(this.userCredentials).subscribe({

@@ -58,6 +58,7 @@ export class FixedCostComponent {
 
   newFixedCost(): FormGroup {
     return this.fb.group({
+      fixedCostId: [null],
       amount: [0],
       description: [''],
       budgetCategoryId: [null],

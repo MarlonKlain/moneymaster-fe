@@ -1,1 +1,38 @@
-<p>dashboard works!</p>
+@if(userInformation$ | async; as user){
+
+<div class="container">
+  <h1>Dashaboard</h1>
+  <div class="overall-info">
+    <div class="overall-info-item">
+      <h2>Total Income:</h2>
+      <p>{{ user.budget?.monthlyIncome | currency : "BRL" }}</p>
+    </div>
+    <div class="overall-info-item">
+      <h2>Fixed Costs:</h2>
+      <p>{{ totalFixedCost$ | async | currency : "BRL" }}</p>
+    </div>
+    <div class="overall-info-item">
+      <h2>Flexible Spending:</h2>
+      <p>{{ 1000 | currency : "BRL" }}</p>
+    </div>
+  </div>
+  <div class="budget-categories-container">
+    @for (budgetCategory of user.budget?.budgetCategories; track $index) {
+    <div class="card">
+      <ng-icon name="heroPencilSquareSolid"></ng-icon>
+      <h3>{{ budgetCategory.name }}</h3>
+      <p>{{ budgetCategory.percentage * 100 }}%</p>
+      @if (user.budget && budgetCategory) {
+      <p>
+        {{
+          budgetCategory.percentage * user.budget.monthlyIncome
+            | currency : "BRL" : "symbol" : "1.2"
+        }}
+      </p>
+      }
+    </div>
+    }
+  </div>
+</div>
+
+}
