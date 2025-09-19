@@ -5,5 +5,6 @@ export interface BudgetCategory {
   percentage: number;
   name: string;
   imageUrl: string;
+  totalFixedCost: number;
   fixedCosts: FixedCosts[];
 }

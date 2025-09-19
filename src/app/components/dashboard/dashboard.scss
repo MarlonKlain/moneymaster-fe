@@ -20,7 +20,12 @@
   justify-content: center;
   align-content: center;
   gap: 3rem;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
+  border: solid;
+  border-width: 2px;
+  border-radius: 0.5rem;
+  border-color: COLORS.$primary;
+  padding: 1rem;
   h2 {
     @extend %bold-text;
     font-size: 1.5rem;
@@ -57,16 +62,26 @@
   border: solid;
   border-width: 2px;
   border-radius: 0.5rem;
-
-  ng-icon {
+  border-color: COLORS.$primary;
+  button {
     align-self: flex-end;
     position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    ng-icon {
+      color: COLORS.$primary;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
   h3 {
     @extend %title-text;
     font-size: 1.5rem;
     align-self: center;
+    color: COLORS.$main-text;
   }
   p {
     @extend %regular-text;

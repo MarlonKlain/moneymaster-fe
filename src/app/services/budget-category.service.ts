@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BudgetCategory } from '../models/budget-category.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environment/environment';
 
 @Injectable({
@@ -25,10 +25,16 @@ export class BudgetCategoryService {
     );
   }
 
-  deleteBudgetCategory(budgetCategories: BudgetCategory[]): Observable<any> {
+  deleteBudgetCategory(budgetCategory: BudgetCategory): Observable<any | null> {
     return this.http.post<any>(
       `${this.apiUrl}/budget-category/delete`,
-      budgetCategories
+      budgetCategory
+    );
+  }
+
+  getTotalFixedCost(budgetCategory: BudgetCategory): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiUrl}/budget-category/${budgetCategory.budgetCategoryId}`
     );
   }
 }

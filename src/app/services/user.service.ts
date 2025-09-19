@@ -14,29 +14,4 @@ export class UserService {
   getUserInformation(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/user`);
   }
-
-  getTotalFixedCost(): Observable<number> {
-    return this.getUserInformation().pipe(
-      map((user) => {
-        if (!user.budget?.budgetCategories) {
-          return 0;
-        }
-
-        //categoryTotal: the total of all the fixed costs in ALL categories
-        return user.budget.budgetCategories.reduce(
-          (categoryTotal, budgetCategory) => {
-            //categoryTotal: the total of all the fixed costs in one category
-            const sumOfCostsInCategory = budgetCategory.fixedCosts.reduce(
-              (totalFixedCost, fixedCost) => {
-                return totalFixedCost + fixedCost.amount;
-              },
-              0
-            );
-            return categoryTotal + sumOfCostsInCategory;
-          },
-          0
-        );
-      })
-    );
-  }
 }
