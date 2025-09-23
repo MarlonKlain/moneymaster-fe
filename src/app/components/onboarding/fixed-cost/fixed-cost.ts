@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { CentralCard } from '../shared/central-card/central-card';
-import { CustomInput } from '../shared/custom-input/custom-input';
-import { FixedCostService } from '../../services/fixed-cost.service';
+import { CentralCard } from '../../shared/central-card/central-card';
+import { CustomInput } from '../../shared/custom-input/custom-input';
+import { FixedCostService } from '../../../services/fixed-cost.service';
 import { Router } from '@angular/router';
 import {
   FormArray,
@@ -9,11 +9,11 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CustomButton } from '../shared/custom-button/custom-button';
+import { CustomButton } from '../../shared/custom-button/custom-button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroXMarkSolid } from '@ng-icons/heroicons/solid';
-import { BudgetCategoryService } from '../../services/budget-category.service';
-import { BudgetCategory } from '../../models/budget-category.model';
+import { BudgetCategoryService } from '../../../services/budget-category.service';
+import { BudgetCategory } from '../../../models/budget-category.model';
 
 @Component({
   selector: 'app-fixed-cost',

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CustomInput } from '../shared/custom-input/custom-input';
+import { CustomInput } from '../../shared/custom-input/custom-input';
 import {
   FormControl,
   FormGroup,
@@ -7,9 +7,9 @@ import {
   ɵInternalFormsSharedModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CustomButton } from '../shared/custom-button/custom-button';
-import { BudgetService } from '../../services/budget.service';
-import { Budget } from '../../models/budget.model';
+import { CustomButton } from '../../shared/custom-button/custom-button';
+import { BudgetService } from '../../../services/budget.service';
+import { Budget } from '../../../models/budget.model';
 import { Router } from '@angular/router';
 
 @Component({

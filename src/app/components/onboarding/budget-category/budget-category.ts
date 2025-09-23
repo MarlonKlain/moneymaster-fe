@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { CentralCard } from '../shared/central-card/central-card';
+import { CentralCard } from '../../shared/central-card/central-card';
 import { Router } from '@angular/router';
-import { BudgetCategoryService } from '../../services/budget-category.service';
+import { BudgetCategoryService } from '../../../services/budget-category.service';
 import { Observable, of } from 'rxjs';
-import { BudgetCategory } from '../../models/budget-category.model';
+import { BudgetCategory } from '../../../models/budget-category.model';
 import { CommonModule } from '@angular/common';
 import {
   FormArray,
@@ -11,10 +11,10 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CustomInput } from '../shared/custom-input/custom-input';
+import { CustomInput } from '../../shared/custom-input/custom-input';
 import { heroXMarkSolid } from '@ng-icons/heroicons/solid';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { CustomButton } from '../shared/custom-button/custom-button';
+import { CustomButton } from '../../shared/custom-button/custom-button';
 
 @Component({
   selector: 'app-budget-category',

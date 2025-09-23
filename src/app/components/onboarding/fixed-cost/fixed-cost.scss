@@ -1,6 +1,6 @@
-@use "../../../utils/colors.utils" as COLORS;
-@use "../../../utils/_center.utils.scss" as CENTER;
-@use "../../../utils/font.utils.scss" as FONT;
+@use "../../../../utils/colors.utils" as COLORS;
+@use "../../../../utils/_center.utils.scss" as CENTER;
+@use "../../../../utils/font.utils.scss" as FONT;
 
 .fixed-cost-input-container {
   display: flex;

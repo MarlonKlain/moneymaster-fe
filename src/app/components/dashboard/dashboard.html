@@ -2,35 +2,49 @@
 
 <div class="container">
   <h1>Dashaboard</h1>
+  <button type="button" (click)="logout()">Logout</button>
   <div class="overall-info">
     <div class="overall-info-item">
       <h2>Total Income:</h2>
       <p>{{ dashboard.totalIncome | currency : "BRL" }}</p>
     </div>
     <div class="overall-info-item">
+      <h2>Flexible Spending:</h2>
+      <p>{{ dashboard.flexibleSpending | currency : "BRL" }}</p>
+    </div>
+    <div class="overall-info-item">
       <h2>Fixed Costs:</h2>
       <p>{{ dashboard.totalFixedCosts | currency : "BRL" }}</p>
     </div>
+    <router-outlet></router-outlet>
   </div>
-  <div class="budget-categories-container">
-    @for (budgetCategory of dashboard.budgetCategories; track $index) {
-    <div class="card">
-      <button type="button" (click)="deleteBudgetCategory(budgetCategory)">
-        <ng-icon name="heroTrashSolid" />
-      </button>
-      <h3>{{ budgetCategory.name }}</h3>
-      <p>{{ budgetCategory.percentage * 100 }}%</p>
-      @if (dashboard.totalIncome && budgetCategory) {
-      <p>
-        {{
-          budgetCategory.percentage * dashboard.totalIncome
-            | currency : "BRL" : "symbol" : "1.2"
-        }}
-      </p>
-      }
 
-      <p>Fixed Cost: {{ budgetCategory.totalFixedCost | currency : "BRL" }}</p>
-    </div>
+  <div class="budget-categories-container">
+    <button type="button" class="add-btn">
+      <ng-icon name="bootstrapPlusSquareFill" />
+      <p>Add new Category</p>
+    </button>
+    @for (budgetCategory of dashboard.budgetCategories; track $index) {
+    <a
+      [routerLink]="['/budget-category', budgetCategory.budgetCategoryId]"
+      class="card-link"
+    >
+      <div class="card">
+        <button type="button" (click)="deleteBudgetCategory(budgetCategory)">
+          <ng-icon name="heroTrashSolid" />
+        </button>
+        <h3>{{ budgetCategory.name }}</h3>
+        <p>{{ budgetCategory.percentage * 100 }}%</p>
+        <p>{{ budgetCategory.total | currency : "BRL" }}</p>
+        <p>
+          Fixed Cost: {{ budgetCategory.totalFixedCost | currency : "BRL" }}
+        </p>
+        <p>
+          Flexible Spending:
+          {{ budgetCategory.flexibleSpending | currency : "BRL" }}
+        </p>
+      </div>
+    </a>
     }
   </div>
 </div>
