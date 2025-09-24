@@ -34,7 +34,7 @@ import { CustomButton } from '../../shared/custom-button/custom-button';
     }),
   ],
 })
-export class BudgetCategoryComponent {
+export class OnboardingBudgetCategoryComponent {
   budgetCategories$!: Observable<BudgetCategory[]>;
 
   private readonly router = inject(Router);
@@ -57,7 +57,6 @@ export class BudgetCategoryComponent {
 
     this.budgetCategories$.subscribe({
       next: (defaultCategories) => {
-        console.log(defaultCategories);
         const categoryFormGroups = defaultCategories.map((category) => {
           return this.fb.group({
             budgetCategoryId: [category.budgetCategoryId],

@@ -11,6 +11,7 @@ export class BudgetCategoryService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = environment.apiUrl;
 
+  //get a list of budget categories
   getBudgetCategories(): Observable<BudgetCategory[]> {
     return this.http.get<BudgetCategory[]>(`${this.apiUrl}/budget-category`);
   }
@@ -18,10 +19,19 @@ export class BudgetCategoryService {
   //todo improve the return type
   updateBudgetCategoriesList(
     budgetCategories: BudgetCategory[]
-  ): Observable<any> {
-    return this.http.post(
+  ): Observable<void> {
+    return this.http.post<void>(
       `${this.apiUrl}/budget-category/update`,
       budgetCategories
+    );
+  }
+
+  updateBudgetCategory(
+    budgetCategory: BudgetCategory
+  ): Observable<BudgetCategory> {
+    return this.http.patch<BudgetCategory>(
+      `${this.apiUrl}/budget-category/${budgetCategory.budgetCategoryId}`,
+      budgetCategory
     );
   }
 
@@ -32,9 +42,17 @@ export class BudgetCategoryService {
     );
   }
 
+  //return the total fixed cost of a budget category
   getTotalFixedCost(budgetCategory: BudgetCategory): Observable<number> {
     return this.http.get<number>(
       `${this.apiUrl}/budget-category/${budgetCategory.budgetCategoryId}`
+    );
+  }
+
+  //get a single one budget category
+  getBudgetCategory(budgetCategoryId: string): Observable<BudgetCategory> {
+    return this.http.get<BudgetCategory>(
+      `${this.apiUrl}/budget-category/${budgetCategoryId}`
     );
   }
 }

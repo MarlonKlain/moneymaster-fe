@@ -19,7 +19,7 @@ import { RouterLink } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, AsyncPipe, NgIcon, RouterLink, RouterOutlet],
+  imports: [CommonModule, AsyncPipe, NgIcon, RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   viewProviders: [

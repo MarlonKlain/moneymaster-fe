@@ -5,11 +5,11 @@ import { Onboarding } from './components/onboarding/onboarding';
 import { authGuard } from './guards/auth/auth-guard';
 import { RegisterComponent } from './components/auth/register/register';
 import { WelcomeComponent } from './components/auth/welcome/welcome';
-import { BugdetComponent } from './components/onboarding/bugdet/bugdet';
-import { BudgetCategoryComponent } from './components/onboarding/budget-category/budget-category';
+import { OnboardingBugdetComponent } from './components/onboarding/bugdet/bugdet';
 import { onboardingGuard } from './guards/onboarding/onboarding-guard';
-import { FixedCostComponent } from './components/onboarding/fixed-cost/fixed-cost';
-import { BudgetCategoryEdit } from './components/dashboard/budget-category-edit/budget-category-edit';
+import { OnboardingFixedCostComponent } from './components/onboarding/fixed-cost/fixed-cost';
+import { BudgetCategoryComponent } from './components/dashboard/budget-category/budget-category';
+import { OnboardingBudgetCategoryComponent } from './components/onboarding/budget-category/budget-category';
 
 export const routes: Routes = [
   {
@@ -32,7 +32,7 @@ export const routes: Routes = [
   },
   {
     path: 'budget',
-    component: BugdetComponent,
+    component: OnboardingBugdetComponent,
     canActivate: [authGuard],
   },
 
@@ -48,17 +48,17 @@ export const routes: Routes = [
   },
   {
     path: 'budget-category',
-    component: BudgetCategoryComponent,
+    component: OnboardingBudgetCategoryComponent,
     canActivate: [authGuard],
   },
   {
     path: 'fixed-cost',
-    component: FixedCostComponent,
+    component: OnboardingFixedCostComponent,
     canActivate: [authGuard],
   },
   {
-    path: 'budget-category/:id',
-    component: BudgetCategoryEdit,
+    path: 'budget-category/:budgetCategoryId',
+    component: BudgetCategoryComponent,
     canActivate: [authGuard],
   },
 ];

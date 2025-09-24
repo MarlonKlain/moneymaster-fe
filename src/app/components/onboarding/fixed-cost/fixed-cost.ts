@@ -32,7 +32,7 @@ import { BudgetCategory } from '../../../models/budget-category.model';
     }),
   ],
 })
-export class FixedCostComponent {
+export class OnboardingFixedCostComponent {
   private readonly fixedCostService = inject(FixedCostService);
   private readonly budgetCategoryService = inject(BudgetCategoryService);
   private readonly router = inject(Router);

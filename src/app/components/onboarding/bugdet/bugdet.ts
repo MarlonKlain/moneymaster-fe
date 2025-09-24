@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
   templateUrl: './bugdet.html',
   styleUrl: './bugdet.scss',
 })
-export class BugdetComponent {
+export class OnboardingBugdetComponent {
   private readonly budgetService = inject(BudgetService);
   private readonly router = inject(Router);
 
