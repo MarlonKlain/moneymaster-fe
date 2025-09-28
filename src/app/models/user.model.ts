@@ -14,3 +14,8 @@ export interface User {
   token: string | null;
   budget: Budget | null;
 }
+
+export interface UserLogin {
+  username: string;
+  password: string;
+}
