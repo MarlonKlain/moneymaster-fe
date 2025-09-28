@@ -57,7 +57,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'budget-category/:budgetCategoryId',
+    path: 'budget-category/edit/:budgetCategoryId',
+    component: BudgetCategoryComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'budget-category/create',
     component: BudgetCategoryComponent,
     canActivate: [authGuard],
   },

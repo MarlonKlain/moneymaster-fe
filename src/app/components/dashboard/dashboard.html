@@ -21,11 +21,11 @@
   <div class="budget-categories-container">
     <button type="button" class="add-btn">
       <ng-icon name="bootstrapPlusSquareFill" />
-      <p>Add new Category</p>
+      <a [routerLink]="['/budget-category/create']">Add new Category</a>
     </button>
     @for (budgetCategory of dashboard.budgetCategories; track $index) {
     <a
-      [routerLink]="['/budget-category', budgetCategory.budgetCategoryId]"
+      [routerLink]="['/budget-category/edit', budgetCategory.budgetCategoryId]"
       class="card-link"
     >
       <div class="card">

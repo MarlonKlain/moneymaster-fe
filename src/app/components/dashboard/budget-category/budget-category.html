@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="header">
+    <button type="button" (click)="goBack()">
+      <ng-icon name="heroArrowLeftSolid" />
+    </button>
+    <h1>Edit Budget Category</h1>
+  </div>
+  <form [formGroup]="budgetCategoryForm" (ngSubmit)="onSubmit()">
+    <div class="editable">
+      <div class="identifier">
+        <label for="name">NAME</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+      <div class="identifier">
+        <label for="percentage">PERCENTAGE</label>
+        <input id="percentage" type="number" formControlName="percentage" />
+      </div>
+    </div>
+    <section class="summary-info">
+      <div class="summary-info-item">
+        <label for="total">Total</label>
+        <input id="total" type="text" formControlName="total" />
+      </div>
+      <div class="summary-info-item">
+        <label for="fixedCost">Fixed Costs</label>
+        <input id="fixedCost" type="text" formControlName="totalFixedCost" />
+      </div>
+      <div class="summary-info-item">
+        <label for="flexibleSpending">Flexible Spending</label>
+        <input
+          id="flexibleSpending"
+          type="text"
+          formControlName="flexibleSpending"
+        />
+      </div>
+    </section>
+
+    <div class="add-fixed-cost">
+      <h2>Fixed Costs</h2>
+      <button
+        type="button"
+        class="add-fixed-cost-btn"
+        (click)="addNewFixedCost()"
+      >
+        <ng-icon name="heroPlusSolid" />
+        Add new fixed costs
+      </button>
+    </div>
+    <div formArrayName="fixedCosts" class="fixed-cost-container">
+      @for(fixedCost of fixedCosts.controls; track $index){
+
+      <div [formGroupName]="$index" class="fixed-cost">
+        <div class="fixed-cost-input">
+          <label for="description">DESCRIPTION</label>
+          <input id="description" type="text" formControlName="description" />
+        </div>
+
+        <div class="fixed-cost-input">
+          <label for="amount">AMOUNT</label>
+          <input id="amount" type="number" formControlName="amount" />
+        </div>
+
+        <button type="button" (click)="removeFixedCost($index)">
+          <ng-icon name="heroXMarkSolid" class="delete-icon" />
+        </button>
+      </div>
+      } @empty {
+
+      <div class="no-fixed-cost">
+        <p>No fixed costs added yet</p>
+        <p>Click "Add new fixed costs" to get started</p>
+      </div>
+      }
+    </div>
+    <div class="action-btns">
+      <button type="button" (click)="goBack()">Cancel</button>
+      <button type="submit">
+        <ng-icon name="heroArrowDownTraySolid" />Save
+      </button>
+    </div>
+  </form>
+</div>

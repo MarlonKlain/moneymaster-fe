@@ -1,6 +1,6 @@
-@use "../../../utils/_colors.utils.scss" as COLORS;
-@use "../../../utils/_center.utils.scss" as CENTER;
-@use "../../../utils/font.utils.scss" as FONT;
+@use "../../../../utils/_colors.utils.scss" as COLORS;
+@use "../../../../utils/_center.utils.scss" as CENTER;
+@use "../../../../utils/font.utils.scss" as FONT;
 
 .container {
   @include CENTER.flex-center;
