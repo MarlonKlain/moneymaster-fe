@@ -9,14 +9,14 @@ import { environment } from '../../environment/environment';
 })
 export class BudgetService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = environment.apiUrl + '/budget';
 
   createBudget(userBudget: Budget): Observable<Budget> {
-    return this.http.post<Budget>(`${this.apiUrl}/budget`, userBudget);
+    return this.http.post<Budget>(`${this.apiUrl}`, userBudget);
   }
 
   hasBudget(): Observable<boolean> {
-    return this.http.get<Budget>(`${this.apiUrl}/budget`).pipe(
+    return this.http.get<Budget>(`${this.apiUrl}`).pipe(
       map((budgetResponse) => {
         if (budgetResponse !== null) {
           return true;

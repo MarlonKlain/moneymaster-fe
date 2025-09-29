@@ -117,7 +117,6 @@ export class OnboardingBudgetCategoryComponent {
 
   onSubmit() {
     if (this.budgetCategoryForm.valid) {
-      console.log(this.budgetCategoryForm.value);
       this.budgetCategoryService
         .updateBudgetCategoriesList(this.budgetCategories.value)
         .subscribe({});

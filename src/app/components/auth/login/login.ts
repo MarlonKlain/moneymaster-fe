@@ -1,7 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { Observable } from 'rxjs';
-import { User } from '../../../models/user.model';
 import {
   FormControl,
   FormGroup,
@@ -11,6 +9,7 @@ import {
 import { CustomButton } from '../../shared/custom-button/custom-button';
 import { CustomInput } from '../../shared/custom-input/custom-input';
 import { CentralCard } from '../../shared/central-card/central-card';
+import { UserLogin } from '../../../models/auth.model';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule, CustomButton, CustomInput, CentralCard],
@@ -41,7 +40,7 @@ export class LoginComponent {
       console.log('All fields are required');
       return;
     } else {
-      const userCredentials: Pick<User, 'username' | 'password'> = {
+      const userCredentials: UserLogin = {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password,
       };

@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { User } from '../models/user.model';
+import { UserInformation } from '../models/user.model';
 import { Router } from '@angular/router';
 import { environment } from '../../environment/environment';
+import { UserLogin, UserRegistration } from '../models/auth.model';
+import { ServerResponse } from '../models/server-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,20 +16,17 @@ export class AuthService {
   // readOnly because we wont change anything on HttpClient dependency, we will only read and request.
   private readonly httpClient = inject(HttpClient);
   private readonly router = inject(Router);
-  private readonly apiUrl = environment.apiUrl;
+  private apiUrl = environment.apiUrl + '/user';
 
-  userLogin(
-    userCredentials: Pick<User, 'username' | 'password'>
-  ): Observable<Partial<User>> {
-    console.log(this.apiUrl);
+  userLogin(userCredentials: UserLogin): Observable<UserInformation> {
     return this.httpClient
-      .post<Partial<User>>(`${this.apiUrl}/login`, userCredentials)
+      .post<UserInformation>(`${this.apiUrl}/login`, userCredentials)
       .pipe(
         tap((response) => {
-          if (response && response.token) {
-            console.log('TOKEN:: ', response.token);
-            this.saveToken(response.token);
-            if (response.hasCompletedOnboarding) {
+          if (response && response.jwtToken) {
+            this.saveToken(response.jwtToken);
+            console.log(response);
+            if (response.onboarding.hasCompletedOnboarding) {
               this.router.navigate(['/dashboard']);
             } else {
               this.router.navigate(['/onboarding']);
@@ -37,11 +36,9 @@ export class AuthService {
       );
   }
 
-  userRegister(
-    userCredentials: Omit<User, 'hasCompletedOnboarding' | 'token'>
-  ): Observable<Partial<User>> {
+  userRegister(userCredentials: UserRegistration): Observable<ServerResponse> {
     return this.httpClient
-      .post<Partial<User>>(`${this.apiUrl}/register`, userCredentials)
+      .post<ServerResponse>(`${this.apiUrl}/register`, userCredentials)
       .pipe(
         tap((response) => {
           if (response) {

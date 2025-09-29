@@ -5,7 +5,7 @@ import { BudgetService } from '../../services/budget.service';
 import { OnboardingService } from '../../services/onboarding.service';
 import { UserService } from '../../services/user.service';
 import { map, take } from 'rxjs';
-import { User } from '../../models/user.model';
+import { UserInformation } from '../../models/user.model';
 
 export const onboardingGuard: CanActivateFn = (route, state) => {
   // const fixedCostService = inject(FixedCostService);
@@ -15,7 +15,7 @@ export const onboardingGuard: CanActivateFn = (route, state) => {
   const userService = inject(UserService);
   const router = inject(Router);
 
-  return userService.getUserInformation().pipe(
+  return userService.getUserOnboardingStatus().pipe(
     take(1),
     map((user) => {
       if (!user.hasCompletedOnboarding) {

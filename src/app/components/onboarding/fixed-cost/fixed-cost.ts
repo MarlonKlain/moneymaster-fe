@@ -88,7 +88,6 @@ export class OnboardingFixedCostComponent {
 
   onSubmit() {
     console.log(this.fixedCosts.value);
-
     this.fixedCostService.saveFixedCosts(this.fixedCosts.value).subscribe({
       next: (value) => {
         console.log('SALVO COM SUCESSO: ', value);

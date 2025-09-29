@@ -19,6 +19,7 @@ import {
   heroArrowDownTraySolid,
   heroXMarkSolid,
 } from '@ng-icons/heroicons/solid';
+import { FixedCostService } from '../../../services/fixed-cost.service';
 
 @Component({
   selector: 'app-budget-category',
@@ -43,6 +44,7 @@ export class BudgetCategoryComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly fb = inject(FormBuilder);
   private readonly location = inject(Location);
+  private readonly fixedCostService = inject(FixedCostService);
 
   budgetCategoryIdUrl!: string | null;
   budgetCategory$!: Observable<BudgetCategory>;
@@ -128,7 +130,16 @@ export class BudgetCategoryComponent {
   }
 
   removeFixedCost(index: number): void {
-    this.fixedCosts.removeAt(index);
+    this.fixedCostService
+      .deleteFixedCost(this.fixedCosts.at(index).value)
+      .subscribe({
+        next: (response) => {
+          this.fixedCosts.removeAt(index);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   onSubmit() {

@@ -9,50 +9,42 @@ import { environment } from '../../environment/environment';
 })
 export class BudgetCategoryService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = environment.apiUrl + '/budget-category';
 
   //get a list of budget categories
   getBudgetCategories(): Observable<BudgetCategory[]> {
-    return this.http.get<BudgetCategory[]>(`${this.apiUrl}/budget-category`);
+    return this.http.get<BudgetCategory[]>(`${this.apiUrl}`);
   }
 
   //todo improve the return type
   updateBudgetCategoriesList(
     budgetCategories: BudgetCategory[]
   ): Observable<void> {
-    return this.http.post<void>(
-      `${this.apiUrl}/budget-category/update`,
-      budgetCategories
-    );
+    return this.http.post<void>(`${this.apiUrl}/update`, budgetCategories);
   }
 
   updateBudgetCategory(
     budgetCategory: BudgetCategory
   ): Observable<BudgetCategory> {
     return this.http.patch<BudgetCategory>(
-      `${this.apiUrl}/budget-category/${budgetCategory.budgetCategoryId}`,
+      `${this.apiUrl}/${budgetCategory.budgetCategoryId}`,
       budgetCategory
     );
   }
 
   deleteBudgetCategory(budgetCategory: BudgetCategory): Observable<any | null> {
-    return this.http.post<any>(
-      `${this.apiUrl}/budget-category/delete`,
-      budgetCategory
-    );
+    return this.http.post<any>(`${this.apiUrl}/delete`, budgetCategory);
   }
 
   //return the total fixed cost of a budget category
   getTotalFixedCost(budgetCategory: BudgetCategory): Observable<number> {
     return this.http.get<number>(
-      `${this.apiUrl}/budget-category/${budgetCategory.budgetCategoryId}`
+      `${this.apiUrl}/${budgetCategory.budgetCategoryId}`
     );
   }
 
   //get a single one budget category
   getBudgetCategory(budgetCategoryId: string): Observable<BudgetCategory> {
-    return this.http.get<BudgetCategory>(
-      `${this.apiUrl}/budget-category/${budgetCategoryId}`
-    );
+    return this.http.get<BudgetCategory>(`${this.apiUrl}/${budgetCategoryId}`);
   }
 }

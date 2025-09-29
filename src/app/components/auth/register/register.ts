@@ -6,10 +6,10 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CustomInput } from '../../shared/custom-input/custom-input';
-import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth.service';
 import { CustomButton } from '../../shared/custom-button/custom-button';
 import { CentralCard } from '../../shared/central-card/central-card';
+import { UserRegistration } from '../../../models/auth.model';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,7 @@ import { CentralCard } from '../../shared/central-card/central-card';
   styleUrl: './register.scss',
 })
 export class RegisterComponent {
-  userCredentials!: User;
+  userCredentials!: UserRegistration;
   private readonly userService = inject(AuthService);
 
   registerForm = new FormGroup({
@@ -67,29 +67,23 @@ export class RegisterComponent {
     }
 
     this.userCredentials = {
-      firstName: this.registerForm.value.firstName,
-      lastName: this.registerForm.value.lastName,
-      username: this.registerForm.value.username,
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password,
-      confirmPassword: this.registerForm.value.confirmPassword,
-      hasCompletedOnboarding: null,
-      hasSetBudgetCategories: null,
-      hasSetFixedCosts: null,
-      hasSetMonthlyIncome: null,
-      token: null,
-      budget: null,
+      firstName: this.registerForm.value.firstName!,
+      lastName: this.registerForm.value.lastName!,
+      username: this.registerForm.value.username!,
+      email: this.registerForm.value.email!,
+      password: this.registerForm.value.password!,
+      confirmPassword: this.registerForm.value.confirmPassword!,
     };
 
     this.userService.userRegister(this.userCredentials).subscribe({
       next(response) {
-        console.log('Login successful!. ', response);
+        console.log('Register successful!. ', response);
       },
       error(err) {
-        console.log('Login error. ', err);
+        console.log('Register error. ', err);
       },
       complete() {
-        console.log('Login request complete.');
+        console.log('Register request complete.');
       },
     });
   }

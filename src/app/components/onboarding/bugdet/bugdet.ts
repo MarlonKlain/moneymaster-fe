@@ -33,7 +33,7 @@ export class OnboardingBugdetComponent {
 
   createBudget() {
     const userBudget: Budget = {
-      //todo handle when the user uses comma ",".
+      budgetCategoryId: null,
       monthlyIncome: Number(this.budgetForm.value.monthlyIncome),
       budgetCategories: null,
     };
