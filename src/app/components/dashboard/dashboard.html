@@ -24,26 +24,28 @@
       <a [routerLink]="['/budget-category/create']">Add new Category</a>
     </button>
     @for (budgetCategory of dashboard.budgetCategories; track $index) {
-    <a
-      [routerLink]="['/budget-category/edit', budgetCategory.budgetCategoryId]"
-      class="card-link"
-    >
-      <div class="card">
-        <button type="button" (click)="deleteBudgetCategory(budgetCategory)">
-          <ng-icon name="heroTrashSolid" />
+
+    <div class="card">
+      <a
+        [routerLink]="[
+          '/budget-category/edit',
+          budgetCategory.budgetCategoryId
+        ]"
+        class="card-link"
+      >
+        <button type="button">
+          <ng-icon name="heroPencilSquareSolid" />
         </button>
-        <h3>{{ budgetCategory.name }}</h3>
-        <p>{{ budgetCategory.percentage * 100 }}%</p>
-        <p>{{ budgetCategory.total | currency : "BRL" }}</p>
-        <p>
-          Fixed Cost: {{ budgetCategory.totalFixedCost | currency : "BRL" }}
-        </p>
-        <p>
-          Flexible Spending:
-          {{ budgetCategory.flexibleSpending | currency : "BRL" }}
-        </p>
-      </div>
-    </a>
+      </a>
+      <h3>{{ budgetCategory.name }}</h3>
+      <p>{{ budgetCategory.percentage * 100 }}%</p>
+      <p>{{ budgetCategory.total | currency : "BRL" }}</p>
+      <p>Fixed Cost: {{ budgetCategory.totalFixedCost | currency : "BRL" }}</p>
+      <p>
+        Flexible Spending:
+        {{ budgetCategory.flexibleSpending | currency : "BRL" }}
+      </p>
+    </div>
     }
   </div>
 </div>

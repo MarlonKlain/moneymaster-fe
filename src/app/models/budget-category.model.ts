@@ -8,5 +8,5 @@ export interface BudgetCategory {
   imageUrl: string;
   totalFixedCost: number;
   flexibleSpending: number;
-  fixedCosts: FixedCosts[];
+  fixedCosts: FixedCosts[] | null;
 }

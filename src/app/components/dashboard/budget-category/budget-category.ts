@@ -18,6 +18,7 @@ import {
   heroPlusSolid,
   heroArrowDownTraySolid,
   heroXMarkSolid,
+  heroTrashSolid,
 } from '@ng-icons/heroicons/solid';
 import { FixedCostService } from '../../../services/fixed-cost.service';
 
@@ -33,6 +34,7 @@ import { FixedCostService } from '../../../services/fixed-cost.service';
       heroPlusSolid,
       heroArrowDownTraySolid,
       heroXMarkSolid,
+      heroTrashSolid,
     }),
     provideNgIconsConfig({
       size: '1.2em',
@@ -63,8 +65,10 @@ export class BudgetCategoryComponent {
   ngOnInit() {
     this.budgetCategoryIdUrl =
       this.route.snapshot.paramMap.get('budgetCategoryId');
-    this.budgetCategory$ = this.loadBudgetCategoryData();
-    this.loadBudgetCategoryForm(this.budgetCategory$);
+    if (this.budgetCategoryIdUrl != null) {
+      this.budgetCategory$ = this.loadBudgetCategoryData();
+      this.loadBudgetCategoryForm(this.budgetCategory$);
+    }
   }
 
   get fixedCosts(): FormArray {
@@ -100,12 +104,14 @@ export class BudgetCategoryComponent {
       flexibleSpending: budgetCategory.flexibleSpending,
     });
 
-    const fixedCosts = budgetCategory.fixedCosts.map((fixedCost) =>
-      this.createFixedCostGroup(fixedCost)
-    );
-    const fixedCostFormArray = this.fb.array(fixedCosts);
+    if (budgetCategory.fixedCosts != null) {
+      const fixedCosts = budgetCategory.fixedCosts.map((fixedCost) =>
+        this.createFixedCostGroup(fixedCost)
+      );
+      const fixedCostFormArray = this.fb.array(fixedCosts);
 
-    this.budgetCategoryForm.setControl('fixedCosts', fixedCostFormArray);
+      this.budgetCategoryForm.setControl('fixedCosts', fixedCostFormArray);
+    }
   }
 
   createFixedCostGroup(fixedCost: FixedCosts | null): FormGroup {
@@ -121,7 +127,6 @@ export class BudgetCategoryComponent {
       fixedCostId: [''],
       amount: [''],
       description: [''],
-      budgetCategoryId: [this.budgetCategoryIdUrl],
     });
   }
 
@@ -143,19 +148,47 @@ export class BudgetCategoryComponent {
   }
 
   onSubmit() {
-    console.log(this.budgetCategoryForm.value);
-    this.budgetCategoryService
-      .updateBudgetCategory(this.budgetCategoryForm.value)
-      .subscribe({
-        next: (budgetCategoryUpdated) => {
-          console.log(budgetCategoryUpdated);
-          //updating the data in the screen for the user
-          this.populateForm(budgetCategoryUpdated);
-        },
-      });
+    if (this.budgetCategoryForm.get('budgetCategoryId')?.value) {
+      this.budgetCategoryService
+        .updateBudgetCategory(this.budgetCategoryForm.value)
+        .subscribe({
+          next: (budgetCategoryUpdated) => {
+            console.log(budgetCategoryUpdated);
+            //updating the data in the screen for the user
+            this.populateForm(budgetCategoryUpdated);
+          },
+        });
+    } else {
+      this.budgetCategoryService
+        .createBudgetCategory(this.budgetCategoryForm.value)
+        .subscribe({
+          next: (budgetCategoryUpdated) => {
+            console.log(budgetCategoryUpdated);
+            //updating the data in the screen for the user
+            this.populateForm(budgetCategoryUpdated);
+          },
+        });
+    }
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  deleteBudgetCategory() {
+    if (!this.budgetCategoryForm.get('budgetCategoryId')?.value) {
+      throw new Error('ID must be provided!');
+    } else {
+      this.budgetCategoryService
+        .deleteBudgetCategory(this.budgetCategoryForm.value)
+        .subscribe({
+          next: (value) => {
+            this.goBack();
+          },
+          error(err) {
+            console.log(err);
+          },
+        });
+    }
   }
 }

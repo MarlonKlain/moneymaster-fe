@@ -8,6 +8,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   if (!storedToken) {
     console.log('SEM TOKEN');
+    localStorage.removeItem('jwtToken');
     router.navigate(['/welcome']);
     return false;
   } else {

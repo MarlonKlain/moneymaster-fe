@@ -4,6 +4,13 @@
       <ng-icon name="heroArrowLeftSolid" />
     </button>
     <h1>Edit Budget Category</h1>
+    <button
+      type="button"
+      (click)="deleteBudgetCategory()"
+      class="delete-budget-category"
+    >
+      <ng-icon name="heroTrashSolid" />
+    </button>
   </div>
   <form [formGroup]="budgetCategoryForm" (ngSubmit)="onSubmit()">
     <div class="editable">

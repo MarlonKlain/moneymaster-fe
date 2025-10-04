@@ -36,15 +36,17 @@ export class BudgetCategoryService {
     return this.http.post<any>(`${this.apiUrl}/delete`, budgetCategory);
   }
 
-  //return the total fixed cost of a budget category
-  getTotalFixedCost(budgetCategory: BudgetCategory): Observable<number> {
-    return this.http.get<number>(
-      `${this.apiUrl}/${budgetCategory.budgetCategoryId}`
-    );
-  }
-
   //get a single one budget category
   getBudgetCategory(budgetCategoryId: string): Observable<BudgetCategory> {
     return this.http.get<BudgetCategory>(`${this.apiUrl}/${budgetCategoryId}`);
+  }
+
+  createBudgetCategory(
+    budgetCategory: BudgetCategory
+  ): Observable<BudgetCategory> {
+    return this.http.post<BudgetCategory>(
+      `${this.apiUrl}/create`,
+      budgetCategory
+    );
   }
 }

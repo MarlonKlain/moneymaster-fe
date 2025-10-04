@@ -38,10 +38,26 @@ form {
 .header {
   display: flex;
   columns: row;
+  justify-content: space-between;
   margin: 2rem 0rem;
   gap: 1.3rem;
   h1 {
     @extend %title-text;
+  }
+}
+
+.delete-budget-category {
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+  padding: 0.25rem;
+  ng-icon {
+    color: COLORS.$alert;
+    width: 2rem;
+    height: 2rem;
+  }
+  &:hover ng-icon {
+    color: COLORS.$alert;
   }
 }
 

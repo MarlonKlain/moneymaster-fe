@@ -119,7 +119,11 @@ export class OnboardingBudgetCategoryComponent {
     if (this.budgetCategoryForm.valid) {
       this.budgetCategoryService
         .updateBudgetCategoriesList(this.budgetCategories.value)
-        .subscribe({});
+        .subscribe({
+          next: (value) => {
+            this.router.navigate(['/fixed-cost']);
+          },
+        });
     }
   }
 }
