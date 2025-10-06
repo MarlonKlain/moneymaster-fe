@@ -1,53 +1,68 @@
 @if(dashboard$ | async; as dashboard){
-
-<div class="container">
-  <h1>Dashaboard</h1>
-  <button type="button" (click)="logout()">Logout</button>
-  <div class="overall-info">
-    <div class="overall-info-item">
-      <h2>Total Income:</h2>
-      <p>{{ dashboard.totalIncome | currency : "BRL" }}</p>
-    </div>
-    <div class="overall-info-item">
-      <h2>Flexible Spending:</h2>
-      <p>{{ dashboard.flexibleSpending | currency : "BRL" }}</p>
-    </div>
-    <div class="overall-info-item">
-      <h2>Fixed Costs:</h2>
-      <p>{{ dashboard.totalFixedCosts | currency : "BRL" }}</p>
-    </div>
-  </div>
-
-  <div class="budget-categories-container">
-    <button type="button" class="add-btn">
-      <ng-icon name="bootstrapPlusSquareFill" />
-      <a [routerLink]="['/budget-category/create']">Add new Category</a>
-    </button>
-    @for (budgetCategory of dashboard.budgetCategories; track $index) {
-
-    <div class="card">
-      <a
-        [routerLink]="[
-          '/budget-category/edit',
-          budgetCategory.budgetCategoryId
-        ]"
-        class="card-link"
-      >
-        <button type="button">
+<form [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h1>Dashaboard</h1>
+    <button type="button" (click)="logout()">Logout</button>
+    <div class="overall-info">
+      <div class="overall-info-item">
+        <label for="totalIncome">Total Income:</label>
+        <input id="totalIncome" type="number" formControlName="monthlyIncome" />
+        <button
+          type="button"
+          (click)="enableInput('monthlyIncome')"
+          class="edit-btn"
+        >
           <ng-icon name="heroPencilSquareSolid" />
         </button>
-      </a>
-      <h3>{{ budgetCategory.name }}</h3>
-      <p>{{ budgetCategory.percentage * 100 }}%</p>
-      <p>{{ budgetCategory.total | currency : "BRL" }}</p>
-      <p>Fixed Cost: {{ budgetCategory.totalFixedCost | currency : "BRL" }}</p>
-      <p>
-        Flexible Spending:
-        {{ budgetCategory.flexibleSpending | currency : "BRL" }}
-      </p>
+        @if (isEditing) {
+        <button type="submit">
+          <ng-icon name="heroCheckSolid" />
+        </button>
+        }
+      </div>
+      <div class="overall-info-item">
+        <h2>Flexible Spending:</h2>
+        <p>{{ dashboard.flexibleSpending | currency : "BRL" }}</p>
+      </div>
+      <div class="overall-info-item">
+        <h2>Fixed Costs:</h2>
+        <p>{{ dashboard.totalFixedCosts | currency : "BRL" }}</p>
+      </div>
     </div>
-    }
+
+    <div class="budget-categories-container">
+      <button type="button" class="add-btn">
+        <ng-icon name="bootstrapPlusSquareFill" />
+        <a [routerLink]="['/budget-category/create']">Add new Category</a>
+      </button>
+      @for (budgetCategory of dashboard.budgetCategories; track $index) {
+
+      <div class="card">
+        <a
+          [routerLink]="[
+            '/budget-category/edit',
+            budgetCategory.budgetCategoryId
+          ]"
+          class="card-link"
+        >
+          <button type="button" class="edit-btn">
+            <ng-icon name="heroPencilSquareSolid" />
+          </button>
+        </a>
+        <h3>{{ budgetCategory.name }}</h3>
+        <p>{{ budgetCategory.percentage * 100 }}%</p>
+        <p>{{ budgetCategory.total | currency : "BRL" }}</p>
+        <p>
+          Fixed Cost: {{ budgetCategory.totalFixedCost | currency : "BRL" }}
+        </p>
+        <p>
+          Flexible Spending:
+          {{ budgetCategory.flexibleSpending | currency : "BRL" }}
+        </p>
+      </div>
+      }
+    </div>
   </div>
-</div>
+</form>
 
 }

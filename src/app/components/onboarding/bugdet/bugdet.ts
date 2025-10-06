@@ -33,7 +33,7 @@ export class OnboardingBugdetComponent {
 
   createBudget() {
     const userBudget: Budget = {
-      budgetCategoryId: null,
+      budgetId: null,
       monthlyIncome: Number(this.budgetForm.value.monthlyIncome),
       budgetCategories: null,
     };

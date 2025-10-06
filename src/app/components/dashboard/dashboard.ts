@@ -2,8 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import {
+  heroBuildingStorefrontSolid,
   heroPencilSquareSolid,
   heroXMarkSolid,
+  heroCheckSolid,
 } from '@ng-icons/heroicons/solid';
 
 import { bootstrapPlusSquareFill } from '@ng-icons/bootstrap-icons';
@@ -13,9 +15,19 @@ import { Dashboard } from '../../models/dashboard.model';
 import { DashboardService } from '../../services/dashboard.service';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { BudgetCategory } from '../../models/budget-category.model';
+import { Budget } from '../../models/budget.model';
+import { BudgetService } from '../../services/budget.service';
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, AsyncPipe, NgIcon, RouterLink],
+  imports: [CommonModule, AsyncPipe, NgIcon, RouterLink, ReactiveFormsModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   viewProviders: [
@@ -23,6 +35,7 @@ import { RouterLink } from '@angular/router';
       heroPencilSquareSolid,
       heroXMarkSolid,
       bootstrapPlusSquareFill,
+      heroCheckSolid,
     }),
   ],
 })
@@ -30,9 +43,13 @@ export class DashboardComponent {
   private readonly budgetCategoryService = inject(BudgetCategoryService);
   private readonly dashboardService = inject(DashboardService);
   private readonly authService = inject(AuthService);
+  private readonly budgetService = inject(BudgetService);
 
   dashboard$!: Observable<Dashboard>;
-  totalFixedCost$!: Observable<number>;
+  isEditing: boolean = false;
+  budgetForm: FormGroup = new FormGroup({
+    monthlyIncome: new FormControl({ value: '', disabled: true }),
+  });
 
   ngOnInit() {
     this.loadDashboard();
@@ -40,14 +57,47 @@ export class DashboardComponent {
 
   loadDashboard() {
     this.dashboard$ = this.dashboardService.getDashboardSummary();
+    this.populateForm();
+  }
+
+  populateForm() {
     this.dashboard$.subscribe({
-      next(value) {
-        console.log(value);
+      next: (dashboardData) => {
+        this.budgetForm.patchValue({
+          monthlyIncome: +dashboardData.totalIncome,
+        });
       },
     });
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  onSubmit(): void {
+    const budget: Budget = {
+      budgetId: null,
+      monthlyIncome: this.budgetForm.get('monthlyIncome')?.value,
+      budgetCategories: null,
+    };
+
+    if (this.budgetForm.get('monthlyIncome')?.value != null) {
+      this.budgetService.updateBudget(budget).subscribe({
+        next: () => {
+          this.loadDashboard();
+          this.budgetForm.get('monthlyIncome')?.disable();
+        },
+      });
+    }
+  }
+
+  enableInput(input: string): void {
+    if (this.budgetForm.get(input)?.disabled) {
+      this.budgetForm.get(input)?.enable();
+      this.isEditing = !this.isEditing;
+    } else {
+      this.budgetForm.get(input)?.disable();
+      this.isEditing = !this.isEditing;
+    }
   }
 }

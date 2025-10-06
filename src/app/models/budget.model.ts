@@ -1,7 +1,7 @@
 import { BudgetCategory } from './budget-category.model';
 
 export interface Budget {
-  budgetCategoryId: string | null;
+  budgetId: string | null;
   monthlyIncome: number;
   budgetCategories: BudgetCategory[] | null;
 }

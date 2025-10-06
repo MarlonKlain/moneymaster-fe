@@ -38,4 +38,8 @@ export class BudgetService {
       })
     );
   }
+
+  updateBudget(budgetForm: Budget): Observable<Budget> {
+    return this.http.patch<Budget>(`${this.apiUrl}/update`, budgetForm);
+  }
 }

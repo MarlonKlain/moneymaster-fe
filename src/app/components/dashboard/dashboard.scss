@@ -12,6 +12,10 @@
   margin: 0 auto;
 }
 
+input:disabled {
+  background-color: transparent;
+}
+
 h1 {
   @extend %title-text;
   font-size: 2.5rem;
@@ -30,12 +34,14 @@ h1 {
 }
 
 .overall-info-item {
+  position: relative;
   background-color: COLORS.$bg-card;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 
-  h2 {
+  h2,
+  label {
     @extend %regular-text;
     font-size: 1rem;
     font-weight: 500;
@@ -43,11 +49,42 @@ h1 {
     margin: 0 0 0.5rem 0;
   }
 
-  p {
+  p,
+  input {
     @extend %bold-text;
     font-size: 2rem;
     color: COLORS.$primary;
     margin: 0;
+    width: 100%;
+    border: none;
+  }
+
+  button {
+    position: absolute;
+    top: 0.75rem;
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
+    padding: 0.25rem;
+    ng-icon {
+      color: COLORS.$normal-text;
+      width: 1.25rem;
+      height: 1.25rem;
+      transition: color 0.2s ease-in-out;
+    }
+  }
+  button:nth-of-type(1) {
+    right: 0.75rem;
+    :hover {
+      color: COLORS.$alert;
+    }
+  }
+
+  button:nth-of-type(2) {
+    right: 2.5rem;
+    :hover {
+      color: COLORS.$outline;
+    }
   }
 }
 
@@ -100,7 +137,7 @@ h1 {
     cursor: pointer;
     padding: 0.25rem;
     ng-icon {
-      color: COLORS.$alert;
+      color: COLORS.$normal-text;
       width: 1.25rem;
       height: 1.25rem;
       transition: color 0.2s ease-in-out;
