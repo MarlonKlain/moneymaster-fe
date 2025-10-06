@@ -96,8 +96,6 @@ h1 {
   gap: 1.5rem;
 }
 
-// ... your other styles
-
 .card-link {
   text-decoration: none;
   color: inherit;
@@ -174,6 +172,7 @@ h1 {
     margin: 0;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+    color: COLORS.$normal-text;
   }
   &:hover {
     background-color: rgba(COLORS.$primary, 0.05);

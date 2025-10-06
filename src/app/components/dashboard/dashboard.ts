@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import {
-  heroBuildingStorefrontSolid,
   heroPencilSquareSolid,
   heroXMarkSolid,
   heroCheckSolid,
+  heroUserCircleSolid,
 } from '@ng-icons/heroicons/solid';
 
 import { bootstrapPlusSquareFill } from '@ng-icons/bootstrap-icons';
@@ -15,14 +15,7 @@ import { Dashboard } from '../../models/dashboard.model';
 import { DashboardService } from '../../services/dashboard.service';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { BudgetCategory } from '../../models/budget-category.model';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Budget } from '../../models/budget.model';
 import { BudgetService } from '../../services/budget.service';
 @Component({
@@ -36,6 +29,7 @@ import { BudgetService } from '../../services/budget.service';
       heroXMarkSolid,
       bootstrapPlusSquareFill,
       heroCheckSolid,
+      heroUserCircleSolid,
     }),
   ],
 })
