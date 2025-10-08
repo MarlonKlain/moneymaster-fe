@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import {
@@ -18,9 +18,17 @@ import { RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Budget } from '../../models/budget.model';
 import { BudgetService } from '../../services/budget.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, AsyncPipe, NgIcon, RouterLink, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AsyncPipe,
+    NgIcon,
+    RouterLink,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+  ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   viewProviders: [
@@ -32,12 +40,14 @@ import { BudgetService } from '../../services/budget.service';
       heroUserCircleSolid,
     }),
   ],
+  providers: [provideNgxMask()],
 })
 export class DashboardComponent {
-  private readonly budgetCategoryService = inject(BudgetCategoryService);
   private readonly dashboardService = inject(DashboardService);
   private readonly authService = inject(AuthService);
   private readonly budgetService = inject(BudgetService);
+
+  @ViewChild('totalIncomeInput') totalIncomeInput!: ElementRef;
 
   dashboard$!: Observable<Dashboard>;
   isEditing: boolean = false;
@@ -79,18 +89,25 @@ export class DashboardComponent {
       this.budgetService.updateBudget(budget).subscribe({
         next: () => {
           this.loadDashboard();
-          this.budgetForm.get('monthlyIncome')?.disable();
+          this.enableInput('monthlyIncome');
         },
       });
     }
   }
 
   enableInput(input: string): void {
-    if (this.budgetForm.get(input)?.disabled) {
-      this.budgetForm.get(input)?.enable();
+    const control = this.budgetForm.get(input);
+    if (control?.disabled) {
+      control.enable();
       this.isEditing = !this.isEditing;
+      // 2. Call the focus method.
+      // We use a small timeout to ensure the element is focusable
+      // after the change detection cycle.
+      setTimeout(() => {
+        this.totalIncomeInput.nativeElement.focus();
+      }, 0);
     } else {
-      this.budgetForm.get(input)?.disable();
+      control?.disable();
       this.isEditing = !this.isEditing;
     }
   }

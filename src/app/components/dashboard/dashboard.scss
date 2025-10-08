@@ -12,6 +12,21 @@
   margin: 0 auto;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  ng-icon {
+    color: COLORS.$normal-text;
+    width: 2rem;
+    height: 2rem;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: COLORS.$primary;
+    }
+  }
+}
+
 input:disabled {
   background-color: transparent;
 }
@@ -75,14 +90,14 @@ h1 {
   }
   button:nth-of-type(1) {
     right: 0.75rem;
-    :hover {
+    &:hover ng-icon {
       color: COLORS.$alert;
     }
   }
 
   button:nth-of-type(2) {
     right: 2.5rem;
-    :hover {
+    &:hover ng-icon {
       color: COLORS.$outline;
     }
   }
@@ -119,6 +134,10 @@ h1 {
     @extend %bold-text;
     margin: 0 0 1rem 0;
     font-size: 1.25rem;
+    transition: color 0.2s ease-in-out;
+  }
+  &:hover h3 {
+    color: COLORS.$primary;
   }
   p {
     @extend %regular-text;
@@ -154,16 +173,19 @@ h1 {
   gap: 1rem;
   width: 100%;
   padding: 1rem;
-  color: COLORS.$primary;
+  color: COLORS.$normal-text;
   background-color: transparent;
-  border: 2px dashed COLORS.$outline;
+  border: 2px dashed COLORS.$primary;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   ng-icon {
     width: 1.5rem;
     height: 1.5rem;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+  }
+  &:hover {
+    color: COLORS.$primary;
   }
   a {
     @extend %regular-text;
@@ -171,17 +193,17 @@ h1 {
     font-size: 1.25rem;
     margin: 0;
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
     color: COLORS.$normal-text;
   }
   &:hover {
-    background-color: rgba(COLORS.$primary, 0.05);
+    background-color: rgba(COLORS.$outline, 0.05);
     ng-icon {
       transform: scale(1.1);
     }
     a {
       color: COLORS.$primary;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
 }

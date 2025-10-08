@@ -36,9 +36,6 @@ import { FixedCostService } from '../../../services/fixed-cost.service';
       heroXMarkSolid,
       heroTrashSolid,
     }),
-    provideNgIconsConfig({
-      size: '1.2em',
-    }),
   ],
 })
 export class BudgetCategoryComponent {

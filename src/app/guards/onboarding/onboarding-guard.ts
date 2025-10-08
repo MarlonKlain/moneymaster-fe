@@ -5,13 +5,8 @@ import { BudgetService } from '../../services/budget.service';
 import { OnboardingService } from '../../services/onboarding.service';
 import { UserService } from '../../services/user.service';
 import { map, take } from 'rxjs';
-import { UserInformation } from '../../models/user.model';
 
 export const onboardingGuard: CanActivateFn = (route, state) => {
-  // const fixedCostService = inject(FixedCostService);
-  const budgetService = inject(BudgetService);
-  const onboardingService = inject(OnboardingService);
-  const budgetCategoryService = inject(BudgetCategoryService);
   const userService = inject(UserService);
   const router = inject(Router);
 

@@ -1,12 +1,25 @@
 @if(dashboard$ | async; as dashboard){
 <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
   <div class="container">
-    <h1>Dashaboard</h1>
-    <button type="button" (click)="logout()">Logout</button>
+    <div class="header">
+      <h1>Dashaboard</h1>
+      <a [routerLink]="['/user/profile']">
+        <ng-icon name="heroUserCircleSolid" />
+      </a>
+    </div>
     <div class="overall-info">
       <div class="overall-info-item">
         <label for="totalIncome">Total Income:</label>
-        <input id="totalIncome" type="number" formControlName="monthlyIncome" />
+        <input
+          #totalIncomeInput
+          id="totalIncome"
+          type="text"
+          formControlName="monthlyIncome"
+          prefix="R$"
+          mask="separator.2"
+          thousandSeparator=","
+          decimalMarker="."
+        />
         <button
           type="button"
           (click)="enableInput('monthlyIncome')"

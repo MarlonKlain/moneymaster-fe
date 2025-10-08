@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { OnboardingStatus } from '../models/onboarding.model';
+import { UserProfileInformation } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,9 @@ export class UserService {
 
   getUserOnboardingStatus(): Observable<OnboardingStatus> {
     return this.http.get<OnboardingStatus>(`${this.apiUrl}/onboarding/status`);
+  }
+
+  getUserInformation(): Observable<UserProfileInformation> {
+    return this.http.get<UserProfileInformation>(`${this.apiUrl}/user`);
   }
 }

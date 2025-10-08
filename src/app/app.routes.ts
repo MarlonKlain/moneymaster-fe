@@ -10,6 +10,7 @@ import { onboardingGuard } from './guards/onboarding/onboarding-guard';
 import { OnboardingFixedCostComponent } from './components/onboarding/fixed-cost/fixed-cost';
 import { BudgetCategoryComponent } from './components/dashboard/budget-category/budget-category';
 import { OnboardingBudgetCategoryComponent } from './components/onboarding/budget-category/budget-category';
+import { UserComponent } from './components/user/user';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,11 @@ export const routes: Routes = [
   {
     path: 'budget-category/create',
     component: BudgetCategoryComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'user/profile',
+    component: UserComponent,
     canActivate: [authGuard],
   },
 ];

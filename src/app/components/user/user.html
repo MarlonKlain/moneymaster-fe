@@ -1,1 +1,38 @@
-<p>user works!</p>
+@if(userInformation$ | async; as user){
+<div class="container">
+  <div class="header">
+    <button type="button" (click)="goBack()">
+      <ng-icon name="heroArrowLeftSolid" />
+    </button>
+    <h1>Hi, {{ user.firstName }}!</h1>
+    <button type="button" (click)="goBack()" class="logout">
+      <ng-icon name="heroArrowLeftStartOnRectangleSolid" />
+    </button>
+  </div>
+
+  <form [formGroup]="userInformationForm">
+    <div class="input-container">
+      <label for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName" />
+    </div>
+    <div class="input-container">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName" />
+    </div>
+    <div class="input-container">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" />
+    </div>
+    <div class="input-container">
+      <label for="username">Username</label>
+      <input id="username" formControlName="username" />
+    </div>
+    <div class="action-btns">
+      <button type="button" (click)="goBack()">Cancel</button>
+      <button type="submit">
+        <ng-icon name="heroArrowDownTraySolid" />Save
+      </button>
+    </div>
+  </form>
+</div>
+}

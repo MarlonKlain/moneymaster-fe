@@ -41,8 +41,17 @@ form {
   justify-content: space-between;
   margin: 2rem 0rem;
   gap: 1.3rem;
+
   h1 {
     @extend %title-text;
+  }
+  ng-icon {
+    width: 2rem;
+    height: 2rem;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: COLORS.$outline;
+    }
   }
 }
 
@@ -52,9 +61,10 @@ form {
   cursor: pointer;
   padding: 0.25rem;
   ng-icon {
-    color: COLORS.$alert;
+    color: COLORS.$normal-text;
     width: 2rem;
     height: 2rem;
+    transition: color 0.2s ease-in-out;
   }
   &:hover ng-icon {
     color: COLORS.$alert;
@@ -195,6 +205,9 @@ form {
     color: COLORS.$normal-text;
   }
   button[type="submit"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     background-color: COLORS.$primary;
     border-radius: 0.5rem;
     padding: 0.5rem;
@@ -204,6 +217,10 @@ form {
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
+    ng-icon {
+      width: 2rem;
+      height: 2rem;
+    }
   }
 }
 
