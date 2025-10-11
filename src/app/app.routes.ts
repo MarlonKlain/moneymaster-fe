@@ -10,7 +10,7 @@ import { onboardingGuard } from './guards/onboarding/onboarding-guard';
 import { OnboardingFixedCostComponent } from './components/onboarding/fixed-cost/fixed-cost';
 import { BudgetCategoryComponent } from './components/dashboard/budget-category/budget-category';
 import { OnboardingBudgetCategoryComponent } from './components/onboarding/budget-category/budget-category';
-import { UserComponent } from './components/user/user';
+import { UserComponent } from './components/userprofile/user';
 
 export const routes: Routes = [
   {

@@ -10,7 +10,8 @@ import {
   heroArrowLeftStartOnRectangleSolid,
 } from '@ng-icons/heroicons/solid';
 import { NgIcon, provideIcons, provideNgIconsConfig } from '@ng-icons/core';
-
+import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user',
   imports: [AsyncPipe, ReactiveFormsModule, CommonModule, NgIcon],
@@ -28,6 +29,7 @@ export class UserComponent {
   private readonly userService = inject(UserService);
   private readonly formBuilder = inject(FormBuilder);
   private readonly location = inject(Location);
+  private readonly authService = inject(AuthService);
 
   userInformation$!: Observable<UserProfileInformation>;
   userInformationForm: FormGroup = this.formBuilder.group({
@@ -72,5 +74,9 @@ export class UserComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }
