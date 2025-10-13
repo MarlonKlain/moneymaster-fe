@@ -9,9 +9,10 @@ import {
   heroArrowLeftSolid,
   heroArrowLeftStartOnRectangleSolid,
 } from '@ng-icons/heroicons/solid';
-import { NgIcon, provideIcons, provideNgIconsConfig } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import { AuthService } from '../../services/auth.service';
-import Swal from 'sweetalert2';
+import { AlertService } from '../../services/alerts.service';
+
 @Component({
   selector: 'app-user',
   imports: [AsyncPipe, ReactiveFormsModule, CommonModule, NgIcon],
@@ -30,6 +31,7 @@ export class UserComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly location = inject(Location);
   private readonly authService = inject(AuthService);
+  private readonly alert = inject(AlertService);
 
   userInformation$!: Observable<UserProfileInformation>;
   userInformationForm: FormGroup = this.formBuilder.group({
@@ -76,7 +78,13 @@ export class UserComponent {
     this.location.back();
   }
 
-  logout(): void {
-    this.authService.logout();
+  async logout(): Promise<void> {
+    const isConfirmed = await this.alert.confirmAction(
+      'Are you sure that you want to logout?'
+    );
+
+    if (isConfirmed) {
+      this.authService.logout();
+    }
   }
 }

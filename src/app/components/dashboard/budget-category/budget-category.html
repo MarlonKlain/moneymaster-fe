@@ -6,7 +6,7 @@
     <h1>Edit Budget Category</h1>
     <button
       type="button"
-      (click)="deleteBudgetCategory()"
+      (click)="confirmDeleteBudgetCategory()"
       class="delete-budget-category"
     >
       <ng-icon name="heroTrashSolid" />
@@ -59,7 +59,12 @@
       <div [formGroupName]="$index" class="fixed-cost">
         <div class="fixed-cost-input">
           <label for="description">DESCRIPTION</label>
-          <input id="description" type="text" formControlName="description" />
+          <input
+            #fixedCostInput
+            id="description"
+            type="text"
+            formControlName="description"
+          />
         </div>
 
         <div class="fixed-cost-input">
@@ -67,7 +72,15 @@
           <input id="amount" type="number" formControlName="amount" />
         </div>
 
-        <button type="button" (click)="removeFixedCost($index)">
+        <button
+          type="button"
+          (click)="
+            confirmDeletingFixedCost(
+              $index,
+              fixedCost.get('description')?.value
+            )
+          "
+        >
           <ng-icon name="heroXMarkSolid" class="delete-icon" />
         </button>
       </div>
