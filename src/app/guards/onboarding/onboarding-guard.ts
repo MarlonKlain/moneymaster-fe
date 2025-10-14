@@ -29,7 +29,6 @@ export const onboardingGuard: CanActivateFn = (route, state) => {
       }
 
       if (!user.hasSetFixedCosts) {
-        console.log(user.hasSetFixedCosts);
         router.navigate(['/fixed-cost']);
         return false;
       }

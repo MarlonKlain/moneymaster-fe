@@ -49,4 +49,8 @@ export class BudgetCategoryService {
       budgetCategory
     );
   }
+
+  userExceededMonthlyIncome(): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/monthly-income`);
+  }
 }

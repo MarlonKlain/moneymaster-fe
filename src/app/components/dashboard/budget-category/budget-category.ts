@@ -28,10 +28,11 @@ import {
 } from '@ng-icons/heroicons/solid';
 import { FixedCostService } from '../../../services/fixed-cost.service';
 import { AlertService } from '../../../services/alerts.service';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-budget-category',
-  imports: [CommonModule, ReactiveFormsModule, NgIcon],
+  imports: [CommonModule, ReactiveFormsModule, NgIcon, NgxMaskDirective],
   templateUrl: './budget-category.html',
   styleUrl: './budget-category.scss',
   viewProviders: [
@@ -44,6 +45,7 @@ import { AlertService } from '../../../services/alerts.service';
       heroTrashSolid,
     }),
   ],
+  providers: [provideNgxMask()],
 })
 export class BudgetCategoryComponent {
   private readonly budgetCategoryService = inject(BudgetCategoryService);

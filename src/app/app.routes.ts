@@ -11,6 +11,7 @@ import { OnboardingFixedCostComponent } from './components/onboarding/fixed-cost
 import { BudgetCategoryComponent } from './components/dashboard/budget-category/budget-category';
 import { OnboardingBudgetCategoryComponent } from './components/onboarding/budget-category/budget-category';
 import { UserComponent } from './components/userprofile/user';
+import { monthlyIncomeGuard } from './guards/monthly-income/monthly-income-guard';
 
 export const routes: Routes = [
   {
@@ -65,7 +66,7 @@ export const routes: Routes = [
   {
     path: 'budget-category/create',
     component: BudgetCategoryComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, monthlyIncomeGuard],
   },
   {
     path: 'user/profile',

@@ -63,7 +63,7 @@
           </button>
         </a>
         <h3>{{ budgetCategory.name }}</h3>
-        <p>{{ budgetCategory.percentage * 100 }}%</p>
+        <p>{{ budgetCategory.percentage }}%</p>
         <p>{{ budgetCategory.total | currency : "BRL" }}</p>
         <p>
           Fixed Cost: {{ budgetCategory.totalFixedCost | currency : "BRL" }}

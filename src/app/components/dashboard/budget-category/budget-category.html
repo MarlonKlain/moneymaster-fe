@@ -20,17 +20,40 @@
       </div>
       <div class="identifier">
         <label for="percentage">PERCENTAGE</label>
-        <input id="percentage" type="number" formControlName="percentage" />
+        <input
+          id="percentage"
+          type="text"
+          formControlName="percentage"
+          mask="percent.2"
+          suffix="%"
+          [allowNegativeNumbers]="false"
+        />
       </div>
     </div>
     <section class="summary-info">
       <div class="summary-info-item">
         <label for="total">Total</label>
-        <input id="total" type="text" formControlName="total" />
+        <input
+          id="total"
+          type="text"
+          formControlName="total"
+          prefix="R$"
+          mask="separator.2"
+          thousandSeparator=","
+          decimalMarker="."
+        />
       </div>
       <div class="summary-info-item">
         <label for="fixedCost">Fixed Costs</label>
-        <input id="fixedCost" type="text" formControlName="totalFixedCost" />
+        <input
+          id="fixedCost"
+          type="text"
+          formControlName="totalFixedCost"
+          prefix="R$"
+          mask="separator.2"
+          thousandSeparator=","
+          decimalMarker="."
+        />
       </div>
       <div class="summary-info-item">
         <label for="flexibleSpending">Flexible Spending</label>
@@ -38,6 +61,10 @@
           id="flexibleSpending"
           type="text"
           formControlName="flexibleSpending"
+          prefix="R$"
+          mask="separator.2"
+          thousandSeparator=","
+          decimalMarker="."
         />
       </div>
     </section>
