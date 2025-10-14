@@ -75,10 +75,6 @@ export class BudgetCategoryComponent {
     this.loadBudgetCategoryData();
   }
 
-  // ngAfterViewInit(): void {
-
-  // }
-
   ngOnDestroy(): void {
     if (this.inputsChangesSubscription) {
       this.inputsChangesSubscription.unsubscribe();
@@ -95,8 +91,6 @@ export class BudgetCategoryComponent {
         this.budgetCategoryIdUrl
       );
       this.loadBudgetCategoryForm(this.budgetCategory$);
-    } else {
-      throw new Error('An ID must be provided!');
     }
   }
 
