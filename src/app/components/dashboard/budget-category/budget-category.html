@@ -96,7 +96,15 @@
 
         <div class="fixed-cost-input">
           <label for="amount">AMOUNT</label>
-          <input id="amount" type="number" formControlName="amount" />
+          <input
+            id="amount"
+            type="text"
+            formControlName="amount"
+            prefix="R$"
+            mask="separator.2"
+            thousandSeparator=","
+            decimalMarker="."
+          />
         </div>
 
         <button

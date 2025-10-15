@@ -227,3 +227,71 @@ form {
 .delete-icon {
   color: COLORS.$alert;
 }
+
+@media (max-width: 768px) {
+  // --- General Layout Adjustments ---
+  .container {
+    padding: 1rem; // Reduce padding on the main container for more space
+  }
+
+  form {
+    padding: 1rem; // Reduce padding on the form card
+    row-gap: 1.5rem;
+  }
+
+  .header {
+    margin: 1rem 0;
+    h1 {
+      font-size: 1.75rem; // Make the main title smaller
+    }
+  }
+
+  // --- Stack Multi-Column Layouts ---
+
+  .editable,
+  .summary-info,
+  .add-fixed-cost,
+  .action-btns {
+    grid-template-columns: 1fr; // Convert to a single column
+    row-gap: 1.5rem; // Add vertical spacing between stacked items
+  }
+
+  // --- Specific Adjustments ---
+
+  .add-fixed-cost {
+    text-align: center; // Center the "Fixed Costs" title
+    button {
+      width: 100%; // Make the "Add" button full-width
+      justify-self: center; // Ensure it's centered
+    }
+  }
+
+  .fixed-cost {
+    // Re-organize the row for mobile: inputs stack, delete button is on the side
+    display: grid;
+    grid-template-columns: 1fr auto; // Main content | Delete button
+    grid-template-areas:
+      "desc   delete"
+      "amount delete";
+    gap: 0.5rem 1rem;
+    align-items: center;
+
+    .fixed-cost-input:nth-of-type(1) {
+      grid-area: desc;
+    }
+    .fixed-cost-input:nth-of-type(2) {
+      grid-area: amount;
+    }
+    button {
+      grid-area: delete;
+      align-self: center; // Vertically center the 'X' button
+    }
+  }
+
+  // Make action buttons full-width for easy tapping
+  .action-btns {
+    button {
+      padding: 1rem;
+    }
+  }
+}
